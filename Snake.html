@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNAKE - Retro Museum</title>
+    <link rel="icon" type="image/png" href="Multimedia/Fabricantes.png">
+    <style>
+        /* --- ESTILO GAME BOY / NOKIA --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2b2b2b; /* Gris oscuro carcasa */
+            color: #0f380f; /* Verde oscuro (texto) */
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #8bac0f; /* Verde Game Boy claro */
+            text-shadow: 2px 2px 0px #0f380f;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* LA PANTALLA LCD */
+        #game-board {
+            position: relative;
+            background-color: #9bbc0f; /* El mítico verde de fondo */
+            border: 10px solid #5d6d15;
+            border-radius: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2), 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        canvas {
+            display: block;
+            border: 2px solid #0f380f; /* Borde interno píxeles */
+        }
+
+        /* EFECTO DE REJILLA DE PÍXELES (PIXEL GRID) */
+        .pixel-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(15, 56, 15, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 56, 15, 0.1) 1px, transparent 1px);
+            background-size: 4px 4px; /* Tamaño del píxel simulado */
+            pointer-events: none;
+        }
+
+        .score-board {
+            color: #8bac0f;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .boton-volver {
+            margin-top: 20px;
+            padding: 10px 30px;
+            background: #8bac0f;
+            color: #0f380f;
+            border: 4px solid #0f380f;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+            box-shadow: 5px 5px 0px #000;
+        }
+        
+        .boton-volver:hover {
+            background: #9bbc0f;
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px #000;
+        }
+
+        .instrucciones {
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>SNAKE</h1>
+    <div class="score-board">PUNTOS: <span id="score">0</span></div>
+
+    <div id="game-board">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="pixel-grid"></div> </div>
+
+    <p class="instrucciones">USA LAS FLECHAS ⬆️⬇️⬅️➡️ PARA MOVERTE</p>
+    <a href="index.html" class="boton-volver">SALIR DEL JUEGO</a>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const scoreElement = document.getElementById("score");
+
+        // --- SONIDOS SINTETIZADOS (8-BIT) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playTone(freq, type, duration) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.value = freq;
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        // --- VARIABLES DEL JUEGO ---
+        const box = 20; // Tamaño de cada cuadrito (serpiente y comida)
+        let snake = [];
+        
+        // Posición inicial
+        snake[0] = { x: 10 * box, y: 10 * box };
+
+        let food = {
+            x: Math.floor(Math.random() * (canvas.width/box)) * box,
+            y: Math.floor(Math.random() * (canvas.height/box)) * box
+        };
+
+        let score = 0;
+        let d; // Dirección
+
+        // CONTROL DE TECLADO
+        document.addEventListener("keydown", direction);
+
+        function direction(event) {
+            let key = event.keyCode;
+            // Evitamos que la serpiente gire 180 grados sobre sí misma
+            if(key == 37 && d != "RIGHT") { d = "LEFT"; }
+            else if(key == 38 && d != "DOWN") { d = "UP"; }
+            else if(key == 39 && d != "LEFT") { d = "RIGHT"; }
+            else if(key == 40 && d != "UP") { d = "DOWN"; }
+        }
+
+        // --- BUCLE DEL JUEGO ---
+        let game = setInterval(draw, 100); // Velocidad: 100ms
+
+        function draw() {
+            // 1. Limpiar pantalla (Color LCD de fondo)
+            ctx.fillStyle = "#9bbc0f"; 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Dibujar Serpiente
+            for(let i = 0; i < snake.length; i++) {
+                // Cabeza más oscura, cuerpo un poco más claro (opcional)
+                ctx.fillStyle = (i == 0) ? "#0f380f" : "#306230"; 
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+                
+                // Borde de cada segmento
+                ctx.strokeStyle = "#9bbc0f";
+                ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+            }
+
+            // 3. Dibujar Comida (Manzana pixelada)
+            ctx.fillStyle = "#0f380f";
+            ctx.fillRect(food.x, food.y, box, box);
+            // Detalle de la comida
+            ctx.strokeStyle = "#8bac0f";
+            ctx.strokeRect(food.x+4, food.y+4, box-8, box-8);
+
+            // 4. Posición antigua de la cabeza
+            let snakeX = snake[0].x;
+            let snakeY = snake[0].y;
+
+            // 5. Mover la cabeza
+            if(d == "LEFT") snakeX -= box;
+            if(d == "UP") snakeY -= box;
+            if(d == "RIGHT") snakeX += box;
+            if(d == "DOWN") snakeY += box;
+
+            // 6. DETECCIÓN: ¿Ha comido?
+            if(snakeX == food.x && snakeY == food.y) {
+                score++;
+                scoreElement.innerHTML = score;
+                playTone(600, 'square', 0.1); // Sonido de comer (agudo)
+                
+                // Generar nueva comida
+                food = {
+                    x: Math.floor(Math.random() * (canvas.width/box)) * box,
+                    y: Math.floor(Math.random() * (canvas.height/box)) * box
+                }
+                // NO hacemos pop(), así que la serpiente crece
+            } else {
+                // Si no come, quitamos la cola para mantener tamaño
+                snake.pop(); 
+            }
+
+            // 7. DETECCIÓN: Game Over (Paredes o Cuerpo)
+            let newHead = { x: snakeX, y: snakeY };
+
+            if(snakeX < 0 || snakeX >= canvas.width || 
+               snakeY < 0 || snakeY >= canvas.height || 
+               collision(newHead, snake)) {
+                
+                clearInterval(game); // Parar el juego
+                playTone(150, 'sawtooth', 0.5); // Sonido de muerte (grave)
+                
+                // Mensaje en pantalla
+                ctx.fillStyle = "rgba(15, 56, 15, 0.8)";
+                ctx.fillRect(50, 150, 300, 100);
+                
+                ctx.fillStyle = "#9bbc0f";
+                ctx.font = "30px 'Courier New'";
+                ctx.fillText("GAME OVER", 115, 200);
+                ctx.font = "15px 'Courier New'";
+                ctx.fillText("Pulsa F5 para reiniciar", 100, 230);
+            }
+
+            // Añadir nueva cabeza
+            snake.unshift(newHead);
+        }
+
+        // Función auxiliar para chocar con uno mismo
+        function collision(head, array) {
+            for(let i = 0; i < array.length; i++) {
+                if(head.x == array[i].x && head.y == array[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    </script>
+</body>
+</html>

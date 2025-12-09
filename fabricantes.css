@@ -1,0 +1,213 @@
+/* =========================================
+   ESTILO "HUB DE SELECCIÓN" (Dark Gamer)
+   ========================================= */
+
+body {
+    /* Fondo oscuro grisáceo (Estilo Steam/Epic) */
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* --- ENCABEZADOS --- */
+header {
+    padding: 40px 20px;
+    background: linear-gradient(to bottom, #1f1f1f, #121212);
+    border-bottom: 2px solid #333;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    /* Efecto de texto multicolor sutil */
+    background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    font-size: 1.2em;
+    color: #888;
+    margin-top: 10px;
+    letter-spacing: 5px;
+}
+
+/* --- MENÚ --- */
+nav ul {
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: #1a1a1a;
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+nav a:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px white;
+}
+
+/* --- VIDEOS INTRODUCTORIOS --- */
+.contenedor-videos-intro {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.video-card {
+    background-color: #1e1e1e;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+}
+
+.video-card h3 {
+    margin-top: 0;
+    color: #bbb;
+}
+
+video {
+    width: 400px;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* --- GALERÍA DE FABRICANTES (LO IMPORTANTE) --- */
+.titulo-galeria p {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+    border-bottom: 2px solid #444;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.galeria-fabricantes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px; /* Espacio entre logos */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilo base de cada tarjeta */
+.tarjeta {
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    padding: 30px;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.4s ease; /* Animación suave */
+    border: 2px solid #333;
+    position: relative;
+}
+
+.tarjeta img {
+    max-width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.tarjeta span {
+    margin-top: 15px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    opacity: 0.7;
+}
+
+/* --- EFECTOS HOVER PERSONALIZADOS (La Magia) --- */
+
+/* Al pasar el ratón por CUALQUIER tarjeta */
+.tarjeta:hover {
+    transform: translateY(-10px); /* Sube un poco */
+}
+.tarjeta:hover img {
+    transform: scale(1.1); /* El logo crece */
+}
+.tarjeta:hover span {
+    opacity: 1;
+}
+
+/* Nintendo: ROJO */
+.nintendo:hover {
+    border-color: #e60012;
+    box-shadow: 0 0 25px rgba(230, 0, 18, 0.4);
+}
+
+/* Sony: AZUL */
+.sony:hover {
+    border-color: #003791;
+    box-shadow: 0 0 25px rgba(0, 55, 145, 0.5);
+}
+
+/* Microsoft: VERDE */
+.microsoft:hover {
+    border-color: #107C10;
+    box-shadow: 0 0 25px rgba(16, 124, 16, 0.4);
+}
+
+/* Sega: AZUL CLARO */
+.sega:hover {
+    border-color: #0089cf;
+    box-shadow: 0 0 25px rgba(0, 137, 207, 0.4);
+}
+
+/* Atari: ROJO RETRO */
+.atari:hover {
+    border-color: #E4002B;
+    box-shadow: 0 0 25px rgba(228, 0, 43, 0.4);
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #0a0a0a;
+    padding: 40px;
+    border-top: 2px solid #333;
+    margin-top: 50px;
+}
+
+.boton-subir {
+    color: #00ff00;
+    text-decoration: none;
+    border: 1px solid #00ff00;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+footer p {
+    color: #666;
+    font-size: 0.9em;
+}

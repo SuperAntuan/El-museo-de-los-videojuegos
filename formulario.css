@@ -1,0 +1,228 @@
+/* =========================================
+   ESTILO FORMULARIO ARCADE (FINAL)
+   ========================================= */
+
+   body {
+    background-color: #111;
+    color: #0f0; /* Verde Hacker */
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    /* Fondo con imagen de salón recreativo oscurecida */
+    background-image: 
+        linear-gradient(rgba(0, 20, 0, 0.9), rgba(0, 20, 0, 0.9)),
+        url('Multimedia/Historia/salón de máquinas arcade de los años 70.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* --- MENÚ SUPERIOR SIMPLE --- */
+nav {
+    margin-bottom: 20px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    background: black;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+nav a:hover { 
+    background: #0f0; 
+    color: black;
+    box-shadow: 0 0 15px #0f0;
+}
+
+/* --- LA CAJA DEL ARCADE (CONTENEDOR) --- */
+.arcade-container {
+    background: black;
+    border: 4px solid #0f0; /* Borde Verde Neón */
+    box-shadow: 0 0 20px #0f0, inset 0 0 20px #0f0;
+    padding: 40px;
+    width: 90%;
+    max-width: 550px;
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+}
+
+/* --- CABECERA (TÍTULO + BOTÓN REDONDO) --- */
+.cabecera-arcade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Separación entre título y botón */
+    margin-bottom: 20px;
+}
+
+/* Título Parpadeante */
+.titulo-blink {
+    font-size: 2.2em;
+    color: #ff00de; /* Rosa Neón */
+    text-shadow: 2px 2px #fff;
+    margin: 0;
+    animation: parpadeo 0.8s infinite;
+}
+
+@keyframes parpadeo {
+    0% { opacity: 1; text-shadow: 0 0 10px #ff00de; }
+    50% { opacity: 0.5; text-shadow: none; }
+    100% { opacity: 1; text-shadow: 0 0 10px #ff00de; }
+}
+
+/* --- BOTÓN ARCADE REDONDO (EL DE MÚSICA) --- */
+.btn-arcade-redondo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ff5e5e, #d60000); /* Rojo 3D */
+    border: 3px solid #8a0000;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.6), inset 0 -5px 10px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s;
+}
+
+.btn-arcade-redondo:active, .btn-arcade-redondo.activo {
+    transform: translateY(3px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.6), inset 0 5px 10px rgba(0,0,0,0.4);
+    background: radial-gradient(circle at 30% 30%, #d60000, #a00000);
+}
+
+.btn-arcade-redondo.activo {
+    box-shadow: 0 0 15px #ff0000; /* Brillo cuando suena */
+}
+
+/* --- CAMPOS DEL FORMULARIO --- */
+.campo {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #00d4ff; /* Azul Cian */
+    text-shadow: 0 0 5px #00d4ff;
+    font-size: 1.1em;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    background: #001100; /* Verde muy oscuro */
+    border: 2px solid #0f0;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    background: #002200;
+    box-shadow: 0 0 10px #0f0;
+    border-color: #fff;
+}
+
+/* --- BOTÓN DE ENVIAR (RECTANGULAR) --- */
+.boton-arcade {
+    background: #e60012; /* Rojo Arcade */
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: 4px solid white;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    text-transform: uppercase;
+    transition: transform 0.1s;
+}
+
+.boton-arcade:hover {
+    transform: scale(1.02);
+    background: #ff3333;
+    box-shadow: 0 0 20px red;
+}
+
+.boton-arcade:active {
+    transform: scale(0.98);
+}
+
+/* Puntuación decorativa */
+.score {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: yellow;
+    letter-spacing: 2px;
+}
+
+/* --- BARRA DE SCROLL --- */
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0f0; 
+    border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #00cc00;
+}
+
+/* --- PANTALLA DE CARGA (Para que funcione el fondo negro) --- */
+.pantalla-carga-marca {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 1s;
+}
+.contenido-carga { text-align: center; }
+.texto-blink { color: #0f0; animation: parpadeo 0.5s infinite; font-size: 2em; }
+.pantalla-carga-marca.oculto { opacity: 0; visibility: hidden; }
+
+
+/* =========================================
+   📱 MÓVIL - FORMULARIO
+   ========================================= */
+@media (max-width: 600px) {
+    
+    .arcade-container {
+        width: 95%;      /* Casi todo el ancho */
+        padding: 15px;   /* Menos relleno interno */
+        border-width: 2px; /* Borde más fino */
+    }
+
+    .titulo-blink {
+        font-size: 1.5em; /* Título más pequeño */
+    }
+
+    /* El botón redondo y el título uno encima de otro */
+    .cabecera-arcade {
+        flex-direction: column; 
+        gap: 10px;
+    }
+
+    .btn-arcade-redondo {
+        width: 40px; 
+        height: 40px;
+        font-size: 20px; /* Botón un poco más pequeño */
+    }
+}

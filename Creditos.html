@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créditos</title>
+    <link rel="icon" type="image/png" href="Multimedia/Fabricantes.png">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            overflow: hidden; /* Para que no salga barra de scroll fea */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            perspective: 400px; /* Para el efecto 3D si quisiéramos, o profundidad */
+        }
+
+        /* EL CONTENEDOR QUE SUBE */
+        .creditos-container {
+            text-align: center;
+            position: absolute;
+            bottom: -100%; /* Empieza escondido abajo */
+            width: 80%;
+            animation: subirCreditos 25s linear forwards; /* 15 segundos de subida */
+        }
+
+        @keyframes subirCreditos {
+            0% { bottom: -100%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { bottom: 100%; opacity: 0; } /* Termina arriba del todo */
+        }
+
+        h1 {
+            color: #e60012; /* Rojo Arcade */
+            font-size: 4em;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px red;
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: #ffd700; /* Dorado */
+            margin-top: 40px;
+            font-size: 1.5em;
+        }
+        strong {
+            font-size: 1.2em;
+            color: #2ecb23;
+            margin: 10px 0;
+        }
+        p {
+            font-size: 1.2em;
+            color: #aaa;
+            margin: 10px 0;
+        }
+
+        .logo-final {
+            margin-top: 50px;
+            filter: drop-shadow(0 0 10px white);
+        }
+
+        /* BOTÓN REINICIAR (Aparece al final) */
+        #btn-restart {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            font-size: 2em;
+            background: transparent;
+            color: #0f0; /* Verde Hacker */
+            border: 4px solid #0f0;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            box-shadow: 0 0 20px #0f0;
+            text-decoration: none;
+            opacity: 0; /* Invisible al principio */
+            visibility: hidden;
+            transition: opacity 1s;
+            z-index: 100;
+        }
+
+        #btn-restart:hover {
+            background-color: #0f0;
+            color: black;
+        }
+
+        /* CLASE PARA MOSTRAR EL BOTÓN */
+        .mostrar-boton {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musicaCreditos" src="Multimedia/Historia/musica_museo.mp3" autoplay></audio>
+
+    <div class="creditos-container">
+        <h1>ÚLTIMO NIVEL SUPERADO: EHORABUENA¡¡</h1>
+        
+        <h2>DESARROLLO Y DISEÑO</h2>
+        <p>Antuan</p>
+
+        <h2>PROGRAMACIÓN HTML & CSS & JAVA SCRIPT</h2>
+        <p>Antuan</p>
+        <p>Con ayuda de Gemini Player 2 (Para dudas y preguntas de niveles avanzados)</p>
+        <p>Próximamente la página estará en marcha de forma oficial con nuevas novedades y mejoras</p>
+
+        <h2>AGRADECIMIENTOS ESPECIALES:</h2>
+        <p>Nintendo</p>
+        <p>Sega</p>
+        <p>Sony</p>
+        <p>Atari</p>
+        <p>Microsoft</p>
+        <p><strong>Profesora Ana Icerón (UCAM) sé que me pondrás el 10 </strong></p>
+        <p>😉😉</p>
+        <p>Laura</p>
+        <p>Jessica</p>
+        <p>El Xocas Español</p>
+        <p>Pablo Princesa</p>
+        <p>Rufete</p>
+        <p>Jose Perez</p>
+        <p>Fausto</p>
+        
+        <h2>JUGADOR VIP</h2>
+        <p>¡TÚ!!!!!</p>
+        <p>Gracias por visitar el museo. Te invito a hacer una donación</p>
+        <p><em>Si te ha gustado la página demuestralo con aplausos, gritos, vitoreos o lo que se te ocurra</em></p>
+
+        <img src="Multimedia/Fabricantes.png" width="100" class="logo-final">
+        <br><br><br><br>
+        <p>THE END</p>
+    </div>
+
+    <a href="index.html" id="btn-restart">INSERT COIN (REINICIAR)</a>
+
+    <script>
+        // SCRIPT PARA QUE APAREZCA EL BOTÓN AL FINAL
+        const audio = document.getElementById("musicaCreditos");
+        const boton = document.getElementById("btn-restart");
+
+        // Volumen bajito para que sea elegante
+        if(audio) audio.volume = 0.6;
+
+        // Calculamos cuándo termina la animación (15 segundos)
+        setTimeout(() => {
+            boton.classList.add("mostrar-boton");
+        }, 24000); // A los 14 seg aparece el botón
+    </script>
+
+</body>
+</html>

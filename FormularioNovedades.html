@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Únete al Club Arcade</title>
+    <link rel="stylesheet" href="formulario.css">
+    <link rel="stylesheet" href="estiloscomunes.css">
+    <link rel="icon" type="image/png" href="Multimedia/Fabricantes.png">
+</head>
+
+<body>
+    <audio id="musicaFormulario" src="Multimedia/Arcade.mp3" loop></audio>
+
+    <div id="pantalla-carga" class="pantalla-carga-marca">
+        <div class="contenido-carga">
+            <h1 class="texto-blink">LOADING GAME...</h1>
+            <p>INSERT COIN TO START</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <header class="hero-section">
+        <nav>
+            <a href="index.html">Volver al Inicio</a>
+        </nav>
+    </header>
+
+    <div class="arcade-container">
+        
+        <div class="cabecera-arcade">
+            <h1 class="titulo-blink">NEW CHALLENGER</h1>
+            <button id="btnMusica" class="btn-arcade-redondo">🔇</button>
+        </div>
+        
+        <p>Regístrate para recibir novedades y trucos</p>
+
+        <form action="gracias.html" method="get">
+            
+            <div class="campo">
+                <label>PLAYER 1 (Nombre):</label>
+                <input type="text" name="nick" placeholder="Introduce tu Nick..." required>
+            </div>
+
+            <div class="campo">
+                <label>EMAIL (Correo):</label>
+                <input type="email" name="email" placeholder="tu@correo.com" required>
+            </div>
+
+            <div class="campo">
+                <label>CONSOLA FAVORITA:</label>
+                <select name="consola">
+                    <option>Selecciona compañia favorita...</option>
+                    <option>Nintendo (NES/SNES/Switch)</option>
+                    <option>Sega (Master System/Genesis)</option>
+                    <option>Sony (PlayStation)</option>
+                    <option>Atari (2600)</option>
+                    <option>PC Master Race</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label>QUEREMOS SABER MÁS:</label>
+                <textarea name="mensaje" rows="3" placeholder="¿Cuál es tu juego favorito?"></textarea>
+            </div>
+
+            <button type="submit" class="boton-arcade">INSERT COIN (ENVIAR)</button>
+
+        </form>
+        
+        <div class="score">CREDITS: 00</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // CONFIGURACIÓN
+            const tiempoCarga = 3000; // 3 segundos de carga
+            const audio = document.getElementById("musicaFormulario");
+            const btn = document.getElementById("btnMusica");
+            const pantallaCarga = document.getElementById('pantalla-carga');
+
+            // 1. FUNCIÓN VISUAL DEL BOTÓN (MODO REDONDO)
+            function actualizarBoton(sonando) {
+                if (!btn) return;
+                if (sonando) {
+                    btn.textContent = "🔊"; // Solo icono
+                    btn.classList.add("activo");
+                } else {
+                    btn.textContent = "🔇";
+                    btn.classList.remove("activo");
+                }
+            }
+
+            // 2. INTENTAR AUTO-PLAY
+            if (audio) {
+                audio.volume = 0.4;
+                var promesa = audio.play();
+                if (promesa !== undefined) {
+                    promesa.then(_ => actualizarBoton(true)).catch(_ => actualizarBoton(false));
+                }
+            }
+
+            // 3. CONTROL MANUAL (EVITAR ENVÍO DE FORMULARIO)
+            if (btn && audio) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault(); // ¡IMPORTANTE! Evita que el botón recargue la página
+                    e.stopPropagation();
+                    
+                    if (audio.paused) {
+                        audio.play();
+                        actualizarBoton(true);
+                    } else {
+                        audio.pause();
+                        actualizarBoton(false);
+                    }
+                });
+            }
+
+            // 4. QUITAR PANTALLA DE CARGA (Aquí está la magia)
+            window.onload = function() {
+                if (pantallaCarga) {
+                    setTimeout(() => {
+                        pantallaCarga.classList.add('oculto');
+                        // Seguridad para que desaparezca del todo
+                        setTimeout(() => { pantallaCarga.style.display = 'none'; }, 1000);
+                    }, tiempoCarga);
+                }
+            };
+        });
+    </script>
+
+</body>
+</html>

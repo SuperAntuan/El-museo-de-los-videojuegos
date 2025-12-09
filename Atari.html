@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atari</title>
+    <link rel="stylesheet" href="atari.css">
+    <link rel="stylesheet" href="estiloscomunes.css">
+    <link rel="icon" type="image/png" href="Multimedia/ATARI/Atari 2600.png">
+</head>
+
+<body id="top">
+    <div class="pantalla-carga-marca atari-loader">
+        <img src="Multimedia/Iconos/logo_atari_red.png" alt="Atari" width="250">
+    </div>
+
+    <header class="hero-section">
+
+        <h1>INDICE</h1>
+        <nav>
+            <a href="index.html" target="_blank">Página Principal</a>
+            <a href="FabricantesConsolas.html" target="_blank">Fabricantes de consolas</a>
+            <a href="Historia.html" target="_blank">Historia de los videojuegos</a>
+            <a href="FormularioNovedades.html" target="_blank">Formulario Novedades</a>
+           <a href="Minijuego.html" class="start-btn">🕹️ JUGAR AL PONG</a>
+           <a href="Snake.html" class="start-btn" style="background: #8bac0f; color: #0f380f; border-color: #0f380f;">🐍 JUGAR AL SNAKE</a>
+            
+        </nav>
+        <nav><a style="color: #e60012; text-decoration: none;">Start Game</a></nav>
+
+        <h2>Historia Atari</h2>
+
+        <section>
+            <h2>Orígenes</h2>
+            <ul>
+                <li><strong>Empresa:</strong> Atari, fundada por Nolan Bushnell y Ted Dabney en 1972.</li> <br>
+                <li><strong>Motivación:</strong> Tras el éxito de Pong (1972), Atari buscaba llevar los videojuegos a
+                    los hogares.</li> <br>
+                <li><strong>Lanzamiento:</strong> La Atari 2600 fue lanzada en septiembre de 1977. Originalmente costaba
+                    $199 USD.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Innovaciones</h2>
+            <ul>
+                <li><strong>Cartuchos intercambiables:</strong> Antes, los videojuegos eran fijos dentro de la máquina.
+                    La 2600 permitió comprar juegos por separado.</li><br>
+                <li><strong>Controladores:</strong> Usaba joysticks y palancas, una novedad que hacía más intuitiva la
+                    interacción.</li><br>
+                <li><strong>Gráficos y sonido:</strong> Aunque simples, fueron revolucionarios para la época.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Impacto de la industria</h2>
+            <ul>
+                <li>Popularizó los videojuegos en el hogar.</li> <br>
+                <li>Creó una economía de desarrollo de juegos (Activision, etc).</li> <br>
+                <li>Sentó las bases para consolas posteriores (NES, Master System).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Legado</h2>
+            <ul>
+                <li>La Atari 2600 no solo fue una consola: fue el punto de partida de la industria moderna del
+                    videojuego.<br>
+                    Su éxito mostró que existía un mercado masivo de entretenimiento digital en casa.</li>
+            </ul>
+        </section>
+
+        <audio id="musicaFondo" src="Multimedia/ATARI/intro_ATARI.mp4" ></audio>
+
+        <button id="btnMusica" class="btn-flotante-atari">🔇 Música: OFF</button>
+
+
+        <script>
+            // ======================================================
+            // SCRIPT BLINDADO: CARGA + AUTO-AUDIO + DEBUG
+            // ======================================================
+        
+            window.addEventListener('DOMContentLoaded', () => {
+                
+                // 1. CONFIGURACIÓN
+                const tiempoCarga = 5000; // 5 segundos
+                
+                // Buscamos el audio sea cual sea su ID (a veces le llamaste musicaFondo, a veces musicaHistoria)
+                const audio = document.getElementById("musicaFondo") || document.getElementById("musicaHistoria");
+                const btn = document.getElementById("btnMusica");
+                const pantallaCarga = document.querySelector('.pantalla-carga-marca');
+        
+                // 2. FUNCIÓN PARA ACTUALIZAR EL BOTÓN
+                function actualizarBoton(sonando) {
+                    if (!btn) return;
+                    if (sonando) {
+                        btn.textContent = "🔊 Música: ON";
+                        btn.style.opacity = "1";
+                        btn.classList.add("activo");
+                        btn.style.boxShadow = "0 0 15px #e60012"; // Brillo rojo Atari
+                    } else {
+                        btn.textContent = "🔇 Música: OFF";
+                        btn.style.opacity = "0.7";
+                        btn.classList.remove("activo");
+                        btn.style.boxShadow = "none";
+                    }
+                }
+        
+                // 3. INTENTAR REPRODUCIR AUDIO (LO MÁS IMPORTANTE)
+                if (audio) {
+                    audio.volume = 0.4; // Volumen medio
+                    
+                    // Promesa de reproducción
+                    const playPromise = audio.play();
+        
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            // ¡ÉXITO! El navegador dejó sonar la música
+                            console.log("🎶 Música iniciada correctamente.");
+                            actualizarBoton(true);
+                        })
+                        .catch(error => {
+                            // FALLO: El navegador bloqueó el sonido automático
+                            console.warn("⚠️ Autoplay bloqueado por el navegador. El usuario debe hacer clic primero.");
+                            console.error(error); // Para que veas el error en consola (F12)
+                            actualizarBoton(false);
+                        });
+                    }
+                } else {
+                    console.error("❌ ERROR: No encuentro la etiqueta <audio> en el HTML. Revisa el ID.");
+                }
+        
+                // 4. EL BOTÓN (SIEMPRE DEBE FUNCIONAR)
+                if (btn && audio) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Evitar líos con otros clics
+                        if (audio.paused) {
+                            audio.play();
+                            actualizarBoton(true);
+                        } else {
+                            audio.pause();
+                            actualizarBoton(false);
+                        }
+                    });
+                }
+        
+                // 5. QUITAR LA PANTALLA DE CARGA (AUNQUE FALLE EL AUDIO)
+                // Usamos window.onload para asegurarnos de que todo cargó
+                window.onload = function() {
+                    if (pantallaCarga) {
+                        setTimeout(() => {
+                            pantallaCarga.classList.add('oculto');
+                        }, tiempoCarga);
+                    }
+                };
+        
+            });
+        </script>
+
+</html>
+
+<nav>
+    <ul>
+        <a href="TablaSega.html" target="_blank">Descubre mas de Atari</a>
+        <a href="Creditos.html" target="_blank">Créditos</a>
+    </ul>
+
+
+</nav>
+
+<footer id="pie_pagina">
+    
+
+
+    <p>El Autor de esta pagina es Antuan.</p>
+    <p>Todos los derechos reservados</p>
+    <p>Si te ha gustado suscríbete:</p>
+
+    <a href="https://youtube.com/@superantuan?si=9x0iotjg3wpvfyn5" target="_blank">
+        <img src="Multimedia/Iconos/YouTube.png" alt="Icono de YouTube" width="35">
+    </a>
+
+    <a href="#pie_pagina" class="boton-flotante-abajo">⬇</a>
+    <a href="#top" class="boton-flotante-arriba">⬆</a>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nintendo</title>
+  <link rel="icon" type="image/png" href="Multimedia/Nintendo/Nintendo Switch.jpg" />
+  <link rel="stylesheet" href="nintendo.css" />
+  <link rel="stylesheet" href="estiloscomunes.css">
+</head>
+
+<body id="top">
+
+  <div class="pantalla-carga-marca nintendo-loader">
+    <img src="Multimedia/Iconos/logo_nintendo_pixel.png" alt="Nintendo" width="300" class="logo-bajada">
+  </div>
+
+  <header class="hero-section">
+
+    <div style="text-align: center; margin-bottom: 20px">
+      <img src="Multimedia/Nintendo/Indice Pokemon.png" width="300" alt="Nintendo Logo" />
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" target="_blank">Página Principal</a></li>
+        <li>
+          <a href="FabricantesConsolas.html" target="_blank">Fabricantes</a>
+        </li>
+        <li><a href="Historia.html" target="_blank">Historia</a></li>
+        <li>
+          <a href="FormularioNovedades.html" target="_blank">Formulario de Novedades</a>
+        </li>
+        <li><a href="#pie_pagina">Game Over</a></li>
+      </ul>
+    </nav>
+
+    <div style="text-align: center; margin: 30px 0">
+      <video src="Multimedia/Nintendo/Ash_y_Pikachu_dan_la_bienvenida_a_Nintendo.mp4" controls muted width="600" style="
+          border: 5px solid #e60012;
+          border-radius: 20px;
+          box-shadow: 0 10px 20px rgba(230, 0, 18, 0.3);
+        "></video>
+
+      <div class="laboratorio-oak" style="position: relative">
+        <button id="btnExtra" class="btn-extra-interno">🎵 Extra: OFF</button>
+
+        <h2>LABORATORIO DEL PROFESOR OAK</h2>
+
+        <div id="zona-maletin" class="zona-interactiva">
+          <p class="instruccion">Haz clic en el maletín para abrirlo</p>
+          <img id="img-maletin" src="Multimedia/Nintendo/Maletin.jpeg" alt="Maletín Oak" width="200" />
+        </div>
+
+        <div id="zona-seleccion" class="oculto">
+          <p class="instruccion">¡Elige con sabiduría!</p>
+
+          <div class="mesa-iniciales">
+            <div class="pokeball-container">
+              <span class="nombre-flotante">Bulbasaur</span>
+              <img class="img-bola" src="Multimedia/Nintendo/pokeball.png" alt="Pokeball" />
+              <img class="img-poke" src="Multimedia/Nintendo/bulbasur.gif" alt="Bulbasaur" />
+            </div>
+
+            <div class="pokeball-container">
+              <span class="nombre-flotante">Charmander</span>
+              <img class="img-bola" src="Multimedia/Nintendo/pokeball.png" alt="Pokeball" />
+              <img class="img-poke" src="Multimedia/Nintendo/charmander.gif" alt="Charmander" />
+            </div>
+
+            <div class="pokeball-container">
+              <span class="nombre-flotante">Squirtle</span>
+              <img class="img-bola" src="Multimedia/Nintendo/pokeball.png" alt="Pokeball" />
+              <img class="img-poke" src="Multimedia/Nintendo/squirtle.gif" alt="Squirtle" />
+            </div>
+          </div>
+
+          <p id="mensaje-eleccion" style="height: 20px; font-weight: bold"></p>
+          <div style="text-align: center;">
+            <button id="btnReiniciarPoke" style="
+            display: none; /* Se oculta al principio */
+            background: #333; 
+            color: white; 
+            border: 2px solid #e60012; 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            cursor: pointer; 
+            font-weight: bold;">
+              ↻ Elegir de nuevo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <h1>Historia de Nintendo</h1>
+    </div>
+
+    <section>
+      <h2>Orígenes</h2>
+      <ul>
+        <li>
+          <strong>Empresa:</strong> Nintendo Co., Ltd., fundada por Fusajiro
+          Yamauchi en 1889 (cartas Hanafuda).
+        </li>
+        <li>
+          <strong>Motivación:</strong> Tras el éxito de Pong (1972), Atari
+          buscaba llevar los videojuegos a los hogares.
+        </li>
+        <li>
+          <strong>Lanzamiento:</strong> La "Famicom" en 1983. Llegó a América
+          como NES en 1985.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Innovaciones</h2>
+      <ul>
+        <li>
+          <strong>Sello de Calidad:</strong> Chip 10NES para evitar juegos de
+          baja calidad.
+        </li>
+        <li>
+          <strong>El D-Pad (Cruceta):</strong> Inventado por Gunpei Yokoi,
+          estándar de la industria.
+        </li>
+        <li>
+          <strong>Scrolling:</strong> Mundos más grandes gracias al
+          desplazamiento de pantalla.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Impacto</h2>
+      <ul>
+        <li>Revivió la industria tras el crash del 83.</li>
+        <li>Estableció el modelo de licencias moderno.</li>
+        <li>Creó franquicias eternas: Mario, Zelda, Metroid.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Legado</h2>
+      <ul>
+        <li>Convirtió "Nintendo" en sinónimo de "videojuegos".</li>
+      </ul>
+    </section>
+    <nav>
+      <ul>
+        <li>
+          <a href="Tabla Nintendo.html" target="_blank">Descubre mas de Nintendo</a>
+        </li>
+        <li><a href="Creditos.html" target="_blank">Créditos</a></li>
+      </ul>
+    </nav>
+
+    <audio id="musicaFondo" src="Multimedia/Nintendo/Tono_Super_Mario_Bros.mp3" ></audio>
+    <audio id="musicaExtra" src="Multimedia/Nintendo/pokémon-opening.mp3"></audio> 
+    <button id="btnMusica" class="btn-flotante-nintendo">🔇 Fondo: OFF</button>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+
+        // ======================================================
+        // PARTE 1: CONTROL MAESTRO (CARGA + MÚSICA + BOTÓN)
+        // ======================================================
+
+        const tiempoCarga = 7000; // 10 segundos de Game Boy cayendo
+        const audioMario = document.getElementById("musicaFondo");
+        const btnMusica = document.getElementById("btnMusica");
+        const pantallaCarga = document.querySelector('.pantalla-carga-marca');
+
+        // --- FUNCIÓN VISUAL DEL BOTÓN ---
+        function actualizarBoton(sonando) {
+          if (!btnMusica) return;
+          if (sonando) {
+            btnMusica.textContent = "🔊 Música: ON";
+            btnMusica.style.opacity = "1";
+            btnMusica.classList.add("activo");
+          } else {
+            btnMusica.textContent = "🔇 Música: OFF";
+            btnMusica.style.opacity = "0.8"; // Un poco transparente
+            btnMusica.classList.remove("activo");
+          }
+        }
+
+        // --- INTENTAR AUTO-PLAY (Música de Mario) ---
+        if (audioMario) {
+          audioMario.volume = 0.3;
+          var promesa = audioMario.play();
+          if (promesa !== undefined) {
+            promesa.then(_ => actualizarBoton(true)).catch(_ => actualizarBoton(false));
+          }
+        }
+
+        // --- CONTROL DEL BOTÓN ---
+        if (btnMusica && audioMario) {
+          btnMusica.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (audioMario.paused) {
+              audioMario.play();
+              actualizarBoton(true);
+            } else {
+              audioMario.pause();
+              actualizarBoton(false);
+            }
+          });
+        }
+
+        // --- QUITAR PANTALLA DE CARGA ---
+        window.addEventListener('load', function () {
+          if (pantallaCarga) {
+            setTimeout(() => {
+              pantallaCarga.classList.add('oculto');
+            }, tiempoCarga);
+          }
+        });
+
+
+        // ======================================================
+        // PARTE 2: LÓGICA DEL JUEGO (MALETÍN Y POKÉMON)
+        // ======================================================
+
+        const zonaMaletin = document.getElementById("zona-maletin");
+        const maletinImg = document.getElementById("img-maletin");
+        const zonaSeleccion = document.getElementById("zona-seleccion");
+        const opciones = document.querySelectorAll(".pokeball-container");
+        const mensaje = document.getElementById("mensaje-eleccion");
+        const btnReiniciar = document.getElementById("btnReiniciarPoke");
+
+        // 1. ABRIR MALETÍN
+        if (maletinImg) {
+          maletinImg.addEventListener("click", function () {
+            this.style.transform = "scale(1.5)";
+            this.style.opacity = "0";
+            this.style.transition = "all 0.5s";
+
+            setTimeout(() => {
+              zonaMaletin.style.display = "none";
+              if (zonaSeleccion) {
+                zonaSeleccion.classList.remove("oculto");
+                zonaSeleccion.classList.add("aparecer");
+              }
+            }, 500);
+          });
+        }
+
+        // 2. ELEGIR POKÉMON
+        opciones.forEach((opcion) => {
+          opcion.addEventListener("click", function () {
+            if (this.classList.contains("abierto")) return;
+
+            const bola = this.querySelector(".img-bola");
+            if (bola) bola.classList.add("temblor");
+
+            if (mensaje) {
+              mensaje.textContent = "¡La Pokéball se está moviendo!";
+              mensaje.style.color = "#e60012";
+            }
+
+            setTimeout(() => {
+              if (bola) bola.classList.remove("temblor");
+              this.classList.add("abierto");
+
+              const nombrePoke = this.querySelector(".nombre-flotante").textContent;
+              if (mensaje) {
+                mensaje.textContent = "¡Has elegido a " + nombrePoke + "!";
+                mensaje.style.color = "green"; // O el color que prefieras
+              }
+
+              // Mostrar botón reiniciar
+              if (btnReiniciar) btnReiniciar.style.display = "inline-block";
+
+            }, 1000);
+          });
+        });
+
+        // 3. REINICIAR
+        if (btnReiniciar) {
+          btnReiniciar.addEventListener("click", function () {
+            opciones.forEach((opcion) => {
+              opcion.classList.remove("abierto");
+              const bola = opcion.querySelector(".img-bola");
+              if (bola) bola.classList.remove("temblor");
+            });
+            if (mensaje) {
+              mensaje.textContent = "";
+              mensaje.style.color = "black";
+            }
+            btnReiniciar.style.display = "none";
+          });
+        }
+
+        // 4. EL BOTÓN EXTRA (OPENING POKEMON - OPCIONAL)
+        const audioExtra = document.getElementById("musicaExtra");
+        const btnExtra = document.getElementById("btnExtra"); // Asegúrate de tener este botón en HTML si lo usas
+
+        if (btnExtra && audioExtra) {
+          btnExtra.addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (audioExtra.paused) {
+              // Si ponemos el opening, pausamos a Mario para que no se mezclen
+              if (audioMario) { audioMario.pause(); actualizarBoton(false); }
+
+              audioExtra.play();
+              audioExtra.volume = 0.5;
+              btnExtra.textContent = "🎵 Intro: ON";
+            } else {
+              audioExtra.pause();
+              btnExtra.textContent = "🎵 Intro: OFF";
+            }
+          });
+        }
+
+      });
+    </script>
+
+</body>
+
+</html>
+
+<footer id="pie_pagina">
+  <a href="#top" style="
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        background: #b3000e;
+        padding: 10px 20px;
+        border-radius: 20px;
+      ">Start Game (Subir)</a>
+  <br /><br />
+  <p>El Autor de esta página es Antuan.</p>
+  <p>Todos los derechos reservados.</p>
+  <a href="https://youtube.com/@superantuan?si=9x0iotjg3wpvfyn5" target="_blank">
+    <img src="Multimedia/Iconos/YouTube.png" alt="YouTube" width="40" />
+  </a>
+</footer>
+
+</html>

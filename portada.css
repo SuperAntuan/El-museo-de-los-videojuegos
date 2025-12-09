@@ -1,0 +1,261 @@
+/* =========================================
+   ESTILO PORTADA GAMER
+   ========================================= */
+
+   body {
+    background-color: #121212; /* Fondo oscuro */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-image: radial-gradient(circle at center, #2a2a2a 0%, #000 100%); /* Efecto viñeta */
+}
+
+/* --- TÍTULO NEÓN --- */
+.hero-section {
+    padding: 50px 20px;
+    border-bottom: 2px solid #333;
+}
+
+.titulo-neon {
+    font-size: 3em;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #00d4ff,
+        0 0 40px #00d4ff; /* Resplandor azul cian */
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    color: #888;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+}
+
+/* --- MENÚ DE TARJETAS (GRID) --- */
+.menu-principal {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 20px;
+    flex-wrap: wrap;
+}
+
+.tarjeta-menu {
+    background: #1e1e1e;
+    border: 2px solid #333;
+    border-radius: 15px;
+    width: 200px;
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.icono {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.tarjeta-menu h3 {
+    color: #ffd700; /* Dorado */
+    margin: 10px 0;
+}
+
+.tarjeta-menu:hover {
+    transform: translateY(-10px); /* Flota al pasar el ratón */
+    background: #252525;
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* --- VIDEOS --- */
+.zona-videos {
+    background-color: rgba(255,255,255,0.05);
+    padding: 40px;
+    margin-top: 20px;
+}
+
+.videos-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.video-item {
+    background: black;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #444;
+}
+
+.video-item p {
+    color: #aaa;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* --- BOTÓN MÚSICA --- */
+.boton-musica-portada {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #e60012;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.boton-musica-portada.activo {
+    background: #00d4ff; /* Cambia a azul cuando suena */
+    color: black;
+}
+
+/* --- FOOTER --- */
+footer {
+    padding: 30px;
+    background: #000;
+    border-top: 2px solid #333;
+}
+
+.start-btn {
+    font-size: 20px;
+    color: #00ff00; /* Verde Arcade */
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    animation: parpadeo 1s infinite;
+}
+
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* 1. Preparamos el contenedor del título para que sea la referencia */
+.hero-section {
+    position: relative; /* ESTO ES VITAL para que el botón sepa dónde colocarse */
+}
+
+/* 2. El Botón Estático */
+.btn-portada-estatica {
+    position: absolute; /* Se coloca respecto al hero-section, no a la pantalla */
+    
+    /* LO COLOCAMOS A LA DERECHA Y CENTRADO VERTICALMENTE */
+    right: 10%;            /* Un poco separado del borde derecho */
+    top: 50%;              /* A la mitad de la altura del encabezado */
+    transform: translateY(-50%); /* Ajuste fino para centrado perfecto */
+    
+    /* ESTILO PEQUEÑO Y NEÓN (El que te gustó) */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+    color: #d600ff;               
+    border: 2px solid #d600ff;    
+    box-shadow: 0 0 10px #d600ff; 
+    
+    padding: 10px 20px;   
+    font-size: 0.9em;     
+    border-radius: 6px; 
+    font-family: 'Courier New', monospace; 
+    font-weight: bold; 
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.btn-portada-estatica:hover {
+    background-color: #d600ff; 
+    color: white; 
+    box-shadow: 0 0 20px #d600ff; 
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* OPCIONAL: Para móvil, que no se monte encima del texto */
+@media (max-width: 768px) {
+    .btn-portada-estatica {
+        position: static; /* En móvil que se ponga debajo normal */
+        margin-top: 20px;
+        transform: none;
+    }
+}
+
+/* CONTENEDOR DEL TÍTULO Y BOTÓN */
+.cabecera-bienvenida {
+    display: flex;             /* Los pone en la misma línea */
+    justify-content: space-between; /* Título a la izq, Botón a la der */
+    align-items: center;       /* Los centra verticalmente */
+    
+    max-width: 1200px;         /* Anchura máxima igual que tus vídeos */
+    margin: 0 auto 20px auto;  /* Centrado y con margen abajo */
+    padding: 0 20px;           /* Un poco de aire a los lados */
+}
+
+/* EL BOTÓN ESTÁTICO */
+.btn-estatico-derecha {
+    /* Diseño Neón / Arcade */
+    background-color: transparent;       
+    color: #d600ff;               /* Morado Neón */
+    border: 2px solid #d600ff;
+    box-shadow: 0 0 8px #d600ff;
+    
+    /* Tamaño discreto */
+    padding: 8px 16px; 
+    font-size: 0.9em; 
+    border-radius: 6px; 
+    font-family: 'Courier New', monospace; 
+    font-weight: bold; 
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-estatico-derecha:hover {
+    background-color: #d600ff; 
+    color: white; 
+    box-shadow: 0 0 15px #d600ff; 
+    transform: scale(1.05);
+}
+
+/* AJUSTE PARA MÓVIL (Para que no se monten) */
+@media (max-width: 600px) {
+    .cabecera-bienvenida {
+        flex-direction: column; /* Uno debajo del otro en móvil */
+        gap: 15px;
+    }
+}
+
+/* =========================================
+   📱 MÓVIL - PORTADA
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* Título Neón más pequeño */
+    .titulo-neon {
+        font-size: 2em; 
+    }
+
+    /* Los vídeos uno debajo de otro */
+    .videos-grid {
+        display: flex;             /* Cambiamos Grid por Flex */
+        flex-direction: column;    /* Columna vertical */
+        gap: 30px;
+        align-items: center;
+    }
+
+    .video-item {
+        width: 100%; /* Ocupa todo el ancho */
+    }
+    
+    .video-item video {
+        width: 100%; /* El vídeo se adapta */
+    }
+}

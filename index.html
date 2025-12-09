@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido al Salón de los Videojuegos</title>
+    <link rel="stylesheet" href="portada.css">
+    <link rel="stylesheet" href="estiloscomunes.css">
+    <link rel="icon" type="image/png" href="Multimedia/Iconos/Captura de pantalla 2025-10-26 a las 13.39.52.png">
+</head>
+
+<body>
+
+    <div id="pantalla-carga">
+        <div class="contenido-carga">
+            <h1 class="texto-blink">LOADING GAME...</h1>
+            <p>INSERT COIN TO START</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <header class="hero-section">
+        <h1 class="titulo-neon">🏆 Hall de la Fama de las Consolas 🏆</h1>
+        <p class="subtitulo">Presiona la CATEGORIA para comenzar la aventura, pero antes... <br>
+        ¿Conoces el famoso CÓDIGO KONAMI?</p>
+    </header>
+
+    <nav class="menu-principal">
+        
+        <a href="Historia.html" class="tarjeta-menu">
+            <div class="icono">📜</div>
+            <h3>Historia</h3>
+            <p>Viaja al pasado</p>
+        </a>
+
+        <a href="FabricantesConsolas.html" class="tarjeta-menu">
+            <div class="icono">🏭</div>
+            <h3>Fabricantes</h3>
+            <p>Los gigantes del juego</p>
+        </a>
+
+        <a href="FormularioNovedades.html" class="tarjeta-menu">
+            <div class="icono">📝</div>
+            <h3>Novedades</h3>
+            <p>Apúntate al futuro</p>
+        </a>
+
+        <a href="Creditos.html" class="tarjeta-menu">
+            <div class="icono">🪙✨</div>
+            <h3>Créditos</h3>
+            <p>Último nivel superado</p>
+        </a>
+
+    </nav>
+
+    <section class="zona-videos">
+        
+        <div class="cabecera-bienvenida">
+            <h2>📹 Zona de Bienvenida</h2>
+            <button id="btnMusica" class="btn-estatico-derecha">🔇 Música: OFF</button>
+        </div>
+
+        <div class="videos-grid">
+            <div class="video-item">
+                <video src="Multimedia/Videos Portada/Mario_Bros_da_la_bienvenida_a_programador.mp4" controls muted width="350"></video>
+                <p>Bienvenido Programador</p>
+            </div>
+            
+            <div class="video-item">
+                <video src="Multimedia/Videos Portada/Video_Listo_Tras_Advertencia.mp4" controls muted width="350"></video>
+                <p>¿Estás listo?</p>
+            </div>
+        
+            <div class="video-item">
+                <video src="Multimedia/Videos Portada/Video_de_Personajes_Jugando.mp4" controls muted width="350"></video>
+                <p>Personajes Jugando</p>
+            </div>
+        </div>
+    </section>
+
+    <audio id="musicaFondo" src="Multimedia/Intro_Retro.mp3" loop></audio>
+
+    <footer id="pie_pagina">
+        <a href="#" class="start-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">INSERT COIN (SUBIR)</a>
+        <br><br>
+        <p>El Autor de esta página es Antuan.</p>
+        <p>Todos los derechos reservados.</p>
+        <p>Si te ha gustado suscríbete:</p> 
+        <a href="https://youtube.com/@superantuan?si=9x0iotjg3wpvfyn5" target="_blank"> 
+            <img src="Multimedia/Iconos/YouTube.png" alt="Icono de YouTube" width="35">
+        </a>
+    </footer>
+    
+    <script>
+        // --- A. CONTROL DE MÚSICA ---
+        const audio = document.getElementById("musicaFondo");
+        const btn = document.getElementById("btnMusica");
+
+        if(btn && audio) {
+            btn.addEventListener("click", () => {
+                if(audio.paused) {
+                    audio.play();
+                    audio.volume = 0.5;
+                    btn.textContent = "🔊 Música: ON";
+                    btn.classList.add("activo"); // Asegúrate de tener estilo para .activo en CSS
+                } else {
+                    audio.pause();
+                    btn.textContent = "🔇 Música: OFF";
+                    btn.classList.remove("activo");
+                }
+            });
+        }
+
+        // --- B. CÓDIGO KONAMI (Easter Egg) ---
+        const codigoSecreto = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let posicion = 0;
+    
+        document.addEventListener('keydown', function(e) {
+            if (e.key === codigoSecreto[posicion]) {
+                posicion++; 
+                if (posicion === codigoSecreto.length) {
+                    alert("🎮 ¡TRUCO ACTIVADO! \nHas desbloqueado el modo Dios (Mentira, pero gracias por jugar).");
+                    posicion = 0; 
+                }
+            } else {
+                posicion = 0; 
+            }
+        });
+
+        // --- C. PANTALLA DE CARGA ---
+        window.addEventListener('load', function() {
+            const pantallaCarga = document.getElementById('pantalla-carga');
+            setTimeout(() => {
+                if(pantallaCarga) pantallaCarga.classList.add('oculto');
+            }, 1500); 
+        });
+    </script>
+
+</body>
+</html>

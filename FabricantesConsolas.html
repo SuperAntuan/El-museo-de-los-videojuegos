@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabricantes de Videojuegos</title>
+    <link rel="icon" type="image/png" href="Multimedia/Fabricantes.png">
+    <link rel="stylesheet" href="fabricantes.css">
+    <link rel="stylesheet" href="estiloscomunes.css">
+</head>
+
+<body>
+    <div id="pantalla-carga">
+        <div class="contenido-carga">
+            <h1 class="texto-blink">LOADING GAME...</h1>
+            <p>INSERT COIN TO START</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <header class="hero-section">
+
+    <header>
+        <h1>El mundo de los videojuegos</h1>
+        <br>
+        <h2>SELECCIONA TU DESTINO</h2>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" target="_blank">Página Principal</a></li>
+            <li><a href="Historia.html" target="_blank">Historia</a></li>
+            <li><a href="FormularioNovedades.html" target="_blank">Formulario de Novedades</a></li>
+            <li><a href="#pie_pagina">Game Over</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-videos-intro">
+        <div class="video-card">
+            <h3>Historia de las Compañías</h3>
+            <video src="Multimedia/Videos Portada/Zelda_s_History_of_Gaming_Companies.mp4" controls muted></video>
+        </div>
+        <div class="video-card">
+            <h3>Unboxing de Consolas</h3>
+            <video src="Multimedia/Historia/Mario_Bros_abre_caja_de_consolas.mp4" controls muted></video>
+        </div>
+        
+    </div>
+
+    <br><br>
+
+    <div class="titulo-galeria">
+        <p>ELIGE UNA COMPAÑÍA</p>
+    </div>
+
+    <div class="galeria-fabricantes">
+        
+        <a href="Nintendo.html" target="_blank" class="tarjeta nintendo">
+            <img src="Multimedia/Nintendo/ICONO Nintendo.png" alt="Nintendo">
+            <span>Nintendo</span>
+        </a>
+
+        <a href="Sony.html" target="_blank" class="tarjeta sony">
+            <img src="Multimedia/SONY/ICONO Sony.png" alt="Sony">
+            <span>Sony</span>
+        </a>
+
+        <a href="Microsoft.html" target="_blank" class="tarjeta microsoft">
+            <img src="Multimedia/MICROSOFT/Icono Microsoft.png" alt="Microsoft">
+            <span>Microsoft</span>
+        </a>
+
+        <a href="Sega.html" target="_blank" class="tarjeta sega">
+            <img src="Multimedia/SEGA/ICONO SEGA.jpg" alt="Sega">
+            <span>Sega</span>
+        </a>
+
+        <a href="Atari.html" target="_blank" class="tarjeta atari">
+            <img src="Multimedia/ATARI/Icono Atari.png" alt="Atari">
+            <span>Atari</span>
+        </a>
+
+    </div>
+
+    <br><br>
+    <script>
+        // Esperamos a que toda la página (imágenes, vídeos...) esté cargada
+        window.addEventListener('load', function() {
+            
+            const pantallaCarga = document.getElementById('pantalla-carga');
+            
+            // Le damos un pequeño respiro (ej. 1.5 segundos) para que se vea el efecto
+            // aunque la página cargue muy rápido.
+            setTimeout(() => {
+                // Añadimos la clase que lo hace transparente
+                pantallaCarga.classList.add('oculto');
+            }, 1500); // Puedes cambiar 1500 por más tiempo si quieres (ms)
+
+        });
+    </script>
+
+</body> </html>
+
+</body>
+
+<footer id="pie_pagina">
+    <a href="#top" class="boton-subir">Start Game</a>
+    <br><br>
+    <p>El Autor de esta página es Antuan.</p>
+    <p>Todos los derechos reservados.</p>
+    <a href="https://youtube.com/@superantuan?si=9x0iotjg3wpvfyn5" target="_blank">
+        <img src="Multimedia/Iconos/YouTube.png" alt="YouTube" width="35">
+    </a>
+</footer>
+
+</html>

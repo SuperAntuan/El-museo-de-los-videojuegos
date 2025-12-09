@@ -1,0 +1,253 @@
+/* =========================================
+   BOTÓN FLOTANTE "IR ARRIBA"
+   ========================================= */
+
+.boton-flotante-arriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #ffd700; /* Dorado */
+    color: #000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Redondo */
+    text-align: center;
+    line-height: 50px; /* Centrar la flecha verticalmente */
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s, background 0.3s;
+    z-index: 2000;
+    border: 2px solid #fff;
+}
+
+.boton-flotante-arriba:hover {
+    transform: scale(1.1) translateY(-5px); /* Efecto de subida */
+    background-color: #fff;
+    color: #000;
+}
+
+/* =========================================
+   BOTÓN FLOTANTE "IR ABAJO"
+   ========================================= */
+
+.boton-flotante-abajo {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;              /* AL OTRO LADO (Izquierda) */
+    
+    background-color: #ffd700; /* Dorado */
+    color: #000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;      /* Redondo */
+    text-align: center;
+    line-height: 50px;       /* Centrar flecha */
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s, background 0.3s;
+    z-index: 2000;           /* Siempre visible */
+    border: 2px solid #fff;
+}
+
+/* Efecto al pasar el ratón */
+.boton-flotante-abajo:hover {
+    background-color: #fff;
+    color: #000;
+    transform: scale(1.1) translateY(5px); /* Pequeño rebote hacia abajo */
+}
+
+/* =========================================
+   CURSOR GAMER (Puntero del Ratón)
+   ========================================= */
+
+   body {
+    /* Cambia el ratón por defecto a una mira (crosshair) o puntero pixelado */
+    cursor: crosshair; 
+}
+
+/* Al pasar por encima de botones o enlaces */
+a, button, input, .maletin, img {
+    cursor: pointer; /* O si quieres algo más loco: 'help' o 'wait' */
+}
+
+/* =========================================
+   BARRA DE SCROLL PERSONALIZADA
+   ========================================= */
+
+/* El fondo de la barra */
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #1a1a1a; 
+}
+
+/* El "pulgar" (la parte que se mueve) */
+::-webkit-scrollbar-thumb {
+    background-color: #555; /* Color por defecto */
+    border-radius: 10px;
+    border: 2px solid #1a1a1a;
+}
+
+/* Efecto al pasar el ratón por la barra */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
+
+
+/* =========================================
+   ESTILO PANTALLA DE CARGA
+   ========================================= */
+
+   #pantalla-carga {
+    position: fixed; /* Se queda fijo encima de todo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Fondo negro puro */
+    z-index: 9999; /* Asegura que esté ENCIMA de todo lo demás */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    transition: opacity 0.8s ease-out, visibility 0.8s; /* Efecto de desvanecer */
+}
+
+/* Clase para ocultarlo suavemente */
+#pantalla-carga.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Para que no moleste al hacer clic una vez oculto */
+}
+
+/* Texto retro */
+.contenido-carga h1.texto-blink {
+    color: #00ff00; /* Verde Arcade */
+    font-family: 'Courier New', monospace;
+    font-size: 3em;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    animation: parpadeoRapido 0.5s infinite alternate;
+    text-shadow: 0 0 20px #00ff00;
+}
+
+.contenido-carga p {
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2em;
+    animation: parpadeoLento 1s infinite alternate;
+}
+
+/* Animaciones de parpadeo */
+@keyframes parpadeoRapido {
+    from { opacity: 1; }
+    to { opacity: 0.3; }
+}
+@keyframes parpadeoLento {
+    from { opacity: 1; }
+    to { opacity: 0.6; }
+}
+
+/* Opcional: Un spinner simple */
+.spinner {
+    margin: 30px auto;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 255, 0, 0.3);
+    border-radius: 50%;
+    border-top-color: #00ff00;
+    animation: girar 1s ease-in-out infinite;
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+
+/* =========================================
+   📱 VERSIÓN MÓVIL (RESPONSIVE)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* 1. TEXTOS MÁS LEGIBLES */
+    body {
+        font-size: 14px; /* Un poco más pequeño para que quepa */
+        padding: 10px;   /* Menos márgenes laterales */
+    }
+    
+    h1 { font-size: 2em; } /* Títulos no tan gigantes */
+    h2 { font-size: 1.5em; }
+
+    /* 2. MENÚS DE NAVEGACIÓN (VERTICALES) */
+    nav {
+        flex-direction: column; /* Botones uno debajo de otro */
+        gap: 10px;
+    }
+
+    nav a {
+        display: block;      /* Que ocupen todo el ancho */
+        width: 100%;
+        margin-bottom: 5px;
+        box-sizing: border-box; /* Para que el padding no rompa el ancho */
+    }
+    
+    /* El menú de tarjetas de la portada */
+    .menu-principal {
+        flex-direction: column;
+    }
+    .tarjeta-menu {
+        width: 100%; /* Tarjetas a ancho completo */
+        margin-bottom: 20px;
+    }
+
+    /* 3. IMÁGENES Y VÍDEOS QUE NO SE SALGAN */
+    img, video, iframe {
+        max-width: 100% !important; /* Nunca más ancho que el móvil */
+        height: auto !important;    /* Altura automática */
+    }
+
+    /* 4. CONTENEDORES (Secciones) */
+    section, .arcade-container {
+        width: 100% !important;
+        padding: 15px !important;
+        margin: 10px 0 !important;
+    }
+
+    /* 5. TABLAS (Para que no rompan la web) */
+    /* Hacemos que la tabla tenga scroll horizontal si no cabe */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap; /* Evita que el texto se parta feo */
+    }
+
+    /* 6. BOTONES FLOTANTES (Los hacemos más discretos) */
+    .btn-flotante-atari, 
+    .btn-flotante-sony, 
+    .btn-flotante-nintendo,
+    .btn-flotante-sega,
+    .btn-estatico-derecha {
+        padding: 8px 12px;
+        font-size: 0.8em;
+        bottom: 10px;
+        left: 10px;
+        right: auto; /* Quitamos alineaciones raras */
+    }
+    
+    /* El botón estático de la portada que baje debajo del título */
+    .cabecera-bienvenida {
+        flex-direction: column;
+        text-align: center;
+    }
+    .btn-estatico-derecha {
+        position: static; /* Ya no flota, se pone debajo */
+        margin-top: 10px;
+        transform: none;
+    }
+}

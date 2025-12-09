@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony PlayStation</title>
+    <link rel="stylesheet" href="sony.css" />
+    <link rel="stylesheet" href="estiloscomunes.css" />
+   
+    <link rel="icon" type="image/png" href="Multimedia/Fabricantes.png" />
+  </head>
+
+  <body id="top">
+
+    <div class="pantalla-carga-marca sony-loader">
+      <div class="contenido-centro">
+          <img src="Multimedia/Iconos/logo_ps1.png" alt="PlayStation" width="150">
+          <h1>PlayStation</h1>
+          <p>Licensed by Sony Computer Entertainment Inc.</p>
+      </div>
+  </div>
+   
+
+  <header class="hero-section">
+    <h1>INDICE</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html" target="_blank">Página Principal</a></li>
+        <li><a href="FabricantesConsolas.html" target="_blank">Fabricantes</a></li>
+        <li><a href="Historia.html" target="_blank">Historia</a></li>
+        <li><a href="FormularioNovedades.html" target="_blank">Formulario de Novedades</a></li>
+        <li><a>Game Over</a></li>
+      </ul>
+    </nav>
+
+    <div style="text-align: center; margin: 30px auto">
+      <video
+        src="Multimedia/SONY/Intro_Sony.mp4"
+        controls
+        muted
+        width="600"
+        style="
+          border: 3px solid #00d4ff;
+          border-radius: 10px;
+          box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        "
+      >
+        Tu navegador no soporta el video.
+      </video>
+    </div>
+
+    <div style="text-align: center">
+      <h2>Historia de la consola (PlayStation)</h2>
+    </div>
+
+    <section>
+      <h2>Orígenes</h2>
+      <ul>
+        <li><strong>Empresa:</strong> Sony Computer Entertainment, liderada por Ken Kutaragi (el "Padre de la PlayStation").</li>
+        <li><strong>Motivación:</strong> Nació de un acuerdo fallido con Nintendo para crear un lector de CD para la SNES. Sony decidió lanzarse sola.</li>
+        <li><strong>Lanzamiento:</strong> La PlayStation original (PS1) debutó en Japón en diciembre de 1994 y arrasó mundialmente en 1995.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Innovaciones</h2>
+      <ul>
+        <li><strong>El Formato CD-ROM:</strong> Abandonó los cartuchos caros por CDs, permitiendo juegos más baratos, con más capacidad y música real.</li>
+        <li><strong>Gráficos 3D Poligonales:</strong> Fue la primera consola en popularizar masivamente los mundos tridimensionales complejos.</li>
+        <li><strong>Mando DualShock:</strong> Introdujo los dos joysticks analógicos y la vibración como estándar en la industria.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Impacto en la industria</h2>
+      <ul>
+        <li><strong>Madurez del Gaming:</strong> Atrajo a un público más adulto y "cool" con marketing agresivo y juegos como Wipeout o Resident Evil.</li>
+        <li><strong>Dominio Total:</strong> Fue la primera consola de la historia en vender más de 100 millones de unidades.</li>
+        <li><strong>Nuevas Franquicias:</strong> Vio nacer leyendas como Crash Bandicoot, Gran Turismo, Metal Gear Solid y Silent Hill.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Legado</h2>
+      <ul>
+        <li>La marca PlayStation se convirtió en sinónimo de videojuego, desplazando a Nintendo como líder del mercado durante años.</li>
+        <li>Estableció a Sony como un gigante del entretenimiento interactivo que perdura hasta hoy con la PS5.</li>
+      </ul>
+    </section>
+
+    <nav style="text-align: center; margin: 50px 0;">
+        <a href="TablaSony.html" target="_blank" class="boton-sony-gigante">
+            🎮 Ver Juegos Icónicos de Sony
+        </a>
+        <a href="Creditos.html" target="_blank">Créditos</a>
+    </nav>
+
+    <br /><br />
+
+    <audio id="musicaFondo" src="Multimedia/SONY/cierre_ps1-VEED.mp3"></audio>
+    <button id="btnMusica" class="btn-flotante-sony">🔇 Fondo: OFF</button>
+
+    <script>
+      const audioFondo = document.getElementById("musicaFondo");
+      const btnFondo = document.getElementById("btnMusica");
+
+      window.addEventListener("load", () => {
+        if (audioFondo) {
+          audioFondo.volume = 0.4;
+          var promesa = audioFondo.play();
+          if (promesa !== undefined) {
+            promesa.then((_) => actualizarBotonFondo(true)).catch((error) => actualizarBotonFondo(false));
+          }
+        }
+      });
+
+      if (btnFondo && audioFondo) {
+        btnFondo.addEventListener("click", function (e) {
+          e.stopPropagation();
+          if (audioFondo.paused) {
+            audioFondo.play();
+            actualizarBotonFondo(true);
+          } else {
+            audioFondo.pause();
+            actualizarBotonFondo(false);
+          }
+        });
+      }
+
+      function actualizarBotonFondo(sonando) {
+        if (!btnFondo) return;
+        if (sonando) {
+          btnFondo.textContent = "🔊 Fondo: ON";
+          btnFondo.style.opacity = "1";
+        } else {
+          btnFondo.textContent = "🔇 Fondo: OFF";
+          btnFondo.style.opacity = "0.7";
+        }
+      }
+    </script>
+
+<script>
+  window.addEventListener('load', function() {
+      // Este script busca CUALQUIER pantalla de carga nueva
+      const pantallaCarga = document.querySelector('.pantalla-carga-marca');
+      if(pantallaCarga) {
+          setTimeout(() => {
+              pantallaCarga.classList.add('oculto');
+          }, 17000); 
+      }
+  });
+</script>
+    
+
+</body> </html>
+
+    <footer id="pie_pagina">
+        <a href="Creditos.html" style="color: #10c8ed; text-decoration: none; font-size: 20px">Créditos</a>
+        <br /><br />
+        <p>El Autor de esta página es Antuan.</p>
+        <p>Todos los derechos reservados.</p>
+        <p>Si te ha gustado suscríbete:</p>
+       
+            <img src="Multimedia/Iconos/YouTube.png" alt="YouTube" width="35" />
+        </a>
+        <a href="#pie_pagina" class="boton-flotante-abajo">⬇</a>
+        <a href="#top" class="boton-flotante-arriba">⬆</a>
+    </footer>
+
+  </body>
+</html>

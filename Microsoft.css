@@ -1,0 +1,228 @@
+/* =========================================
+   ESTILO MICROSOFT XBOX (Green & Dark)
+   ========================================= */
+
+body {
+    /* Fondo oscuro casi negro (Típico interfaz Xbox) */
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente oficial de Windows/Xbox */
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* --- TÍTULOS --- */
+h1, h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+h1 {
+    color: #107C10; /* VERDE XBOX OFICIAL */
+    font-size: 3em;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #fff;
+    border-left: 5px solid #107C10;
+    padding-left: 15px;
+    display: block;
+    margin-top: 40px;
+    background: linear-gradient(90deg, rgba(16,124,16,0.2) 0%, transparent 100%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* --- MENÚ DE NAVEGACIÓN --- */
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 40px;
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    background-color: #107C10;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent;
+}
+
+nav a:hover {
+    background-color: #107C10; /* Verde al pasar el ratón */
+    border-bottom: 3px solid #fff;
+}
+
+/* --- SECCIONES DE TEXTO --- */
+section {
+    background-color: #252525;
+    padding: 25px;
+    margin: 20px auto;
+    border-radius: 2px; /* Bordes cuadrados estilo Metro/Modern */
+    max-width: 900px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+strong {
+    color: #107C10;
+}
+
+/* --- TABLA --- */
+table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background-color: #2a2a2a;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(16,124,16,0.2);
+}
+
+/* Título de la tabla */
+th[colspan="8"] {
+    background-color: #107C10;
+    color: white;
+    font-size: 2em;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Cabeceras de columna */
+tr:nth-child(2) th {
+    background-color: #0e5e0e; /* Verde más oscuro */
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+td {
+    padding: 20px;
+    border-bottom: 1px solid #444;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Efecto hover en filas */
+tr:hover td {
+    background-color: #333;
+}
+
+/* --- IMÁGENES Y VIDEO --- */
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #444;
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px;
+    background-color: #000;
+    border-top: 4px solid #107C10;
+    color: #888888;
+}
+
+footer a {
+    color: #107C10;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* =========================================
+   PANTALLA DE CARGA XBOX (ESTILO NUCLEAR)
+   ========================================= */
+
+/* 1. Fondo negro con un toque de energía verde en el centro */
+.pantalla-carga-marca.xbox-loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #000;
+    /* Un degradado radial sutil para dar ambiente */
+    background-image: radial-gradient(circle, rgba(16, 124, 16, 0.2) 0%, #000 70%);
+    z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s;
+}
+
+.xbox-loader .contenido-centro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 2. Animación del Logo: Latido Radioactivo */
+.xbox-loader img {
+    animation: energiaXbox 2s infinite ease-in-out;
+    filter: drop-shadow(0 0 15px #39ff14); /* Brillo verde neón inicial */
+}
+
+@keyframes energiaXbox {
+    0% { transform: scale(1); filter: drop-shadow(0 0 15px #39ff14); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 40px #39ff14); } /* ¡Brilla más! */
+    100% { transform: scale(1); filter: drop-shadow(0 0 15px #39ff14); }
+}
+
+/* 3. Barra de carga inferior */
+.loading-bar-xbox {
+    width: 200px;
+    height: 4px;
+    background: #111;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #39ff14; /* Sombra verde */
+}
+
+/* La luz que se mueve dentro de la barra */
+.loading-bar-xbox::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: #39ff14; /* Verde Xbox Intenso */
+    animation: cargaRapida 1.5s infinite linear;
+}
+
+@keyframes cargaRapida {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 4. Texto estilo consola */
+.texto-sistema {
+    color: #39ff14;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8em;
+    margin-top: 10px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* Clase para ocultar */
+.pantalla-carga-marca.oculto {
+    opacity: 0;
+    visibility: hidden;
+}

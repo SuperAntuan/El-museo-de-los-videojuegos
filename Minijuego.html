@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PONG - Retro Arcade</title>
+    <link rel="icon" type="image/png" href="Multimedia/Fabricantes.png">
+    <style>
+        /* ESTILO TV ANTIGUA */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: white;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: -20px;
+            text-shadow: 0 0 10px white;
+            letter-spacing: 5px;
+        }
+
+        /* EL MARCO DE LA PANTALLA */
+        #game-container {
+            position: relative;
+            border: 10px solid #444;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            background: black;
+        }
+
+        canvas {
+            display: block;
+            border: 2px solid #333;
+            cursor: none; /* Ocultamos el ratón dentro del juego */
+        }
+
+        /* EFECTO DE LÍNEAS DE TV (SCANLINES) */
+        .scanlines {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none; /* Para poder jugar a través de ellas */
+            z-index: 10;
+        }
+
+        /* BOTÓN VOLVER */
+        .boton-volver {
+            margin-top: 20px;
+            padding: 10px 30px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .boton-volver:hover {
+            background: white;
+            color: black;
+        }
+
+        .instrucciones {
+            color: #888;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>PONG 1972</h1>
+    <p class="instrucciones">USA EL RATÓN (SUBIR/BAJAR) PARA MOVER TU PALA</p>
+
+    <div id="game-container">
+        <canvas id="pongCanvas" width="800" height="500"></canvas>
+        <div class="scanlines"></div>
+    </div>
+
+    <a href="index.html" class="boton-volver"><h2>VOLVER AL MUSEO</h2></a>
+
+    <script>
+        const canvas = document.getElementById('pongCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- SONIDOS SIMPLES (Frecuencias) ---
+        // Usamos el AudioContext del navegador para no necesitar archivos mp3
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playBeep(frequency = 440, type = 'square') {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.value = frequency;
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.1);
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // --- VARIABLES DEL JUEGO ---
+        // Palas
+        const paddleWidth = 15;
+        const paddleHeight = 100;
+        let playerY = (canvas.height - paddleHeight) / 2;
+        let aiY = (canvas.height - paddleHeight) / 2;
+
+        // Pelota
+        let ballX = canvas.width / 2;
+        let ballY = canvas.height / 2;
+        let ballSpeedX = 6;
+        let ballSpeedY = 6;
+        const ballSize = 15;
+
+        // Puntuación
+        let playerScore = 0;
+        let aiScore = 0;
+
+        // --- CONTROL DEL JUGADOR (Ratón) ---
+        function calcularPosicionRaton(evt) {
+            const rect = canvas.getBoundingClientRect();
+            const root = document.documentElement;
+            const mouseY = evt.clientY - rect.top - root.scrollTop;
+            return mouseY;
+        }
+
+        canvas.addEventListener('mousemove', function(evt) {
+            const mousePos = calcularPosicionRaton(evt);
+            playerY = mousePos - (paddleHeight / 2);
+        });
+
+        // --- MOTOR DEL JUEGO ---
+        window.onload = function() {
+            const framesPerSecond = 60;
+            setInterval(function() {
+                moveEverything();
+                drawEverything();
+            }, 1000 / framesPerSecond);
+        };
+
+        function ballReset() {
+            ballSpeedX = -ballSpeedX;
+            ballX = canvas.width / 2;
+            ballY = canvas.height / 2;
+        }
+
+        function computerMovement() {
+            const paddleCenter = aiY + (paddleHeight / 2);
+            // La IA persigue la pelota, pero con un poco de retraso para que sea vencible
+            if (paddleCenter < ballY - 35) {
+                aiY += 5;
+            } else if (paddleCenter > ballY + 35) {
+                aiY -= 5;
+            }
+        }
+
+        function moveEverything() {
+            computerMovement();
+
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+            // Rebote Izquierda (Jugador)
+            if (ballX < 0 + paddleWidth) {
+                if (ballY > playerY && ballY < playerY + paddleHeight) {
+                    ballSpeedX = -ballSpeedX;
+                    
+                    // Efecto de ángulo según dónde golpee la pala
+                    const deltaY = ballY - (playerY + paddleHeight / 2);
+                    ballSpeedY = deltaY * 0.35;
+                    
+                    playBeep(440); // Sonido medio
+                } else {
+                    // Punto para la IA
+                    if(ballX < 0) {
+                        aiScore++;
+                        playBeep(150, 'sawtooth'); // Sonido grave (perder)
+                        ballReset();
+                    }
+                }
+            }
+
+            // Rebote Derecha (IA)
+            if (ballX > canvas.width - paddleWidth) {
+                if (ballY > aiY && ballY < aiY + paddleHeight) {
+                    ballSpeedX = -ballSpeedX;
+                    const deltaY = ballY - (aiY + paddleHeight / 2);
+                    ballSpeedY = deltaY * 0.35;
+                    playBeep(440);
+                } else {
+                    // Punto para el Jugador
+                    if(ballX > canvas.width) {
+                        playerScore++;
+                        playBeep(880); // Sonido agudo (ganar)
+                        ballReset();
+                    }
+                }
+            }
+
+            // Rebote Arriba y Abajo
+            if (ballY < 0 || ballY > canvas.height) {
+                ballSpeedY = -ballSpeedY;
+                playBeep(200); // Sonido rebote pared
+            }
+        }
+
+        function drawEverything() {
+            // 1. Fondo Negro
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Red central
+            ctx.strokeStyle = 'white';
+            ctx.beginPath();
+            ctx.setLineDash([10, 20]); // Línea discontinua
+            ctx.moveTo(canvas.width / 2, 0);
+            ctx.lineTo(canvas.width / 2, canvas.height);
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // 3. Pala Izquierda (Jugador)
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, playerY, paddleWidth, paddleHeight);
+
+            // 4. Pala Derecha (IA)
+            ctx.fillRect(canvas.width - paddleWidth, aiY, paddleWidth, paddleHeight);
+
+            // 5. Pelota (Cuadrada, como la original)
+            ctx.fillRect(ballX - (ballSize/2), ballY - (ballSize/2), ballSize, ballSize);
+
+            // 6. Puntuación
+            ctx.font = "50px 'Courier New'";
+            ctx.fillText(playerScore, 200, 100);
+            ctx.fillText(aiScore, canvas.width - 250, 100);
+        }
+
+    </script>
+</body>
+</html>

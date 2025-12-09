@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sega - Welcome to the Next Level</title>
+    <link rel="stylesheet" href="sega.css">
+    <link rel="stylesheet" href="estiloscomunes.css">
+    <link rel="icon" type="image/png" href="Multimedia/ATARI/Atari 2600.png">
+</head>
+
+<body id="top">
+
+    <div class="pantalla-carga-marca sega-loader">
+        <img src="Multimedia/Iconos/logo_sega_white.png" alt="SEGA" width="400">
+    </div>
+
+   
+
+    <header class="hero-section">
+
+    <h1>SEGA</h1>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html" target="_blank">Página Principal</a></li>
+            <li><a href="FabricantesConsolas.html" target="_blank">Fabricantes</a></li>
+            <li><a href="Historia.html" target="_blank">Historia</a></li>
+            <li><a href="FormularioNovedades.html" target="_blank">Formulario de Novedades</a></li>
+            <li><a href="#pie_pagina">Game Over</a></li>
+        </ul>
+    </nav>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <video src="Multimedia/SEGA/Sonic.mp4" controls muted width="600" 
+               style="border: 5px solid #ffcc00; box-shadow: 0 0 30px #0044cc;">
+        </video>
+    </div>
+    
+    <div style="text-align: center;">
+        <h2>Historia de la compañía SEGA</h2>
+    </div>
+
+    <section>
+        <h2>Orígenes</h2>
+        <ul>
+            <li><strong>Empresa:</strong> Fundada en los 50 como "Service Games" (SEGA). Se fusionó con Rosen Enterprises en 1965.</li>
+            <li><strong>Motivación:</strong> Gigante de los Arcades que quería llevar esa experiencia a los hogares y competir con Nintendo.</li>
+            <li><strong>Lanzamiento:</strong> Su primera consola, la SG-1000, fue lanzada en julio de 1983.</li>
+        </ul>
+    </section>
+        
+    <section>
+        <h2>Innovaciones</h2>
+        <ul>
+            <li><strong>Marketing de "Actitud":</strong> "Genesis does what Nintendon't". Posicionamiento rebelde y cool.</li>
+            <li><strong>Impulso de 16-bits:</strong> Popularizaron la Mega Drive/Genesis, forzando el avance tecnológico.</li>
+            <li><strong>Juego en línea:</strong> Con Dreamcast (1998), fueron pioneros al incluir módem de serie.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Impacto de la industria</h2>
+        <ul>
+            <li><strong>Guerra de Consolas:</strong> La rivalidad Sega vs Nintendo definió los 90.</li>
+            <li><strong>Rompió el monopolio:</strong> Logró superar en ventas a Nintendo en mercados clave.</li>
+            <li><strong>Reconfiguración:</strong> Su salida en 2001 consolidó la industria para Sony, Nintendo y Microsoft.</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h2>Legado</h2>
+        <nav>
+        <ul>
+            <li><strong>Transformación</strong>Transformó el panorama de monopolio a competencia feroz. Hoy perduran como un exitoso desarrollador (Sonic, Yakuza, Persona).</li>
+        </ul>
+        </nav>
+    </section>
+
+    <br>
+
+    
+    <audio id="musicaFondo" src="Multimedia/SEGA/SEGA Sound Comparison in Genesis Sonic Games.mp3"></audio>
+
+    <button id="btnMusica" class="btn-flotante-sega">🔇 Música: OFF</button>
+
+
+    <script>
+        const audioFondo = document.getElementById("musicaFondo");
+        const btnFondo = document.getElementById("btnMusica");
+
+        // 1. INTENTAR SONAR AL CARGAR
+        window.addEventListener('load', () => {
+            if(audioFondo) {
+                audioFondo.volume = 0.4;
+                var promesa = audioFondo.play();
+                if (promesa !== undefined) {
+                    promesa.then(_ => actualizarBoton(true))
+                           .catch(error => actualizarBoton(false));
+                }
+            }
+        });
+
+        // 2. BOTÓN PLAY/PAUSE
+        if(btnFondo && audioFondo) {
+            btnFondo.addEventListener('click', function(e) {
+                e.stopPropagation(); // Evita clics fantasma
+                
+                if (audioFondo.paused) {
+                    audioFondo.play();
+                    actualizarBoton(true);
+                } else {
+                    audioFondo.pause();
+                    actualizarBoton(false);
+                }
+            });
+        }
+
+        // Función para cambiar el texto y estilo del botón
+        function actualizarBoton(sonando) {
+            if(!btnFondo) return;
+            
+            if (sonando) {
+                btnFondo.textContent = "🔊 Música: ON";
+                btnFondo.style.opacity = "1";
+                btnFondo.style.boxShadow = "0 0 15px white"; // Brillo al sonar
+            } else {
+                btnFondo.textContent = "🔇 Música: OFF";
+                btnFondo.style.opacity = "0.7";
+                btnFondo.style.boxShadow = "none";
+            }
+        }
+    </script>
+   <script>
+    window.addEventListener('load', function() {
+        const pantallaCarga = document.querySelector('.pantalla-carga-marca');
+        if(pantallaCarga) {
+            setTimeout(() => {
+                pantallaCarga.classList.add('oculto');
+            }, 1500); // 1.5 segundos (¡Velocidad Sonic!)
+        }
+    });
+</script>
+
+</body> </html>
+
+    <nav>
+         <ul>
+        <li>
+          <a href="TablaSega.html" target="_blank"
+            >Descubre mas de Sega</a
+          >
+        </li>
+        <li><a href="Creditos.html" target="_blank">Créditos</a></li>
+      </ul>
+    </nav>
+</body>
+
+
+<footer id="pie_pagina">
+    <a style="color: #0089cf; text-decoration: none; font-size: 20px;">Start Game</a>
+    <br><br>
+    <p>El Autor de esta página es Antuan.</p>
+    <p>Todos los derechos reservados.</p>
+    <p>Si te ha gustado suscríbete:</p>
+    <a href="https://youtube.com/@superantuan?si=9x0iotjg3wpvfyn5" target="_blank">
+        <img src="Multimedia/Iconos/YouTube.png" alt="YouTube" width="35">
+    </a>
+    
+    <a href="#pie_pagina" class="boton-flotante-abajo">⬇</a>
+
+    <a href="#top" class="boton-flotante-arriba">⬆</a>
+</footer>
+
+</html>

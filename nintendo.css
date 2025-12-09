@@ -1,0 +1,549 @@
+/* =========================================
+   ESTILO NINTENDO (Red & White)
+   ========================================= */
+
+/* =========================================
+   FONDO LABORATORIO POKÉMON
+   ========================================= */
+
+   body {
+    /* El truco: Capa blanca al 85% de opacidad sobre la imagen */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+        url('Multimedia/Nintendo/fondo_lab.png');
+    
+    /* Ajustes para que cubra toda la pantalla */
+    background-size: cover;       
+    background-attachment: fixed; /* El fondo se queda quieto al bajar */
+    background-position: center;
+    
+    /* Configuración de fuente */
+    font-family: 'Verdana', sans-serif;
+    color: #333; 
+    margin: 0;
+    padding: 20px;
+}
+/* --- ENCABEZADOS --- */
+h1, h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #e60012; /* ROJO NINTENDO OFICIAL */
+    font-size: 2.5em;
+    letter-spacing: -1px;
+}
+
+h2 {
+    color: #484848;
+    border-bottom: 4px solid #e60012;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* --- MENÚ DE NAVEGACIÓN (Estilo Botonera Switch) --- */
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #e60012;
+    padding: 12px 25px;
+    border-radius: 50px; /* Botones redondos tipo cápsula */
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 0 #b3000e; /* Efecto 3D botón presionado */
+}
+
+nav a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #b3000e;
+    background-color: #ff3344;
+}
+
+nav a:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 0 #b3000e;
+}
+
+/* --- SECCIONES DE TEXTO (Tarjetas Blancas) --- */
+section {
+    background-color: white;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 20px;
+    max-width: 900px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-left: 10px solid #e60012;
+}
+
+li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+/* --- TABLA --- */
+table {
+    width: 100%;
+    max-width: 100vw;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+/* Encabezados de tabla */
+th {
+    background-color: #e60012;
+    color: white;
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Celdas normales */
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Imágenes y Video dentro de la tabla */
+table img, table video {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* --- ANIMACIONES DE MARIO (Incluidas aquí) --- */
+
+/* 1. Vertical */
+.fondo-animado-vertical {
+    background-color: #fffacd; /* Amarillo suave para los bordes */
+    width: 50px;
+    min-width: 50px;
+    padding: 0;
+    position: relative;
+    border-right: 2px solid #e60012;
+    border-left: 2px solid #e60012;
+}
+
+.pista-vertical {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+}
+
+.pista-vertical img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    top: -60px;
+    animation: caerInfinito 6s linear infinite;
+}
+
+.pista-vertical img:nth-child(1) { animation-delay: 0s; }
+.pista-vertical img:nth-child(2) { animation-delay: 1.5s; }
+.pista-vertical img:nth-child(3) { animation-delay: 3s; }
+.pista-vertical img:nth-child(4) { animation-delay: 4.5s; }
+
+@keyframes caerInfinito {
+    0% { top: -60px; }
+    100% { top: 105%; }
+}
+
+/* 2. Horizontal (Separadores) */
+.fondo-animado-horizontal {
+    background-color: #fffacd;
+    height: 40px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 2px solid #e60012;
+    border-bottom: 2px solid #e60012;
+}
+
+.pista-horizontal {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.pista-horizontal img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -50px;
+    width: 30px;
+    animation: correrDerecha 5s linear infinite;
+}
+
+@keyframes correrDerecha {
+    0% { left: -50px; }
+    100% { left: 100%; }
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px;
+    background-color: #e60012;
+    color: white;
+}
+
+/* =========================================
+   ESTILO LABORATORIO POKÉMON
+   ========================================= */
+
+.laboratorio-oak {
+    background-color: #fff;
+    border: 4px solid #e60012;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 10px 0 #b3000e;
+}
+
+.mesa-iniciales {
+    display: flex;
+    justify-content: center;
+    gap: 50px; /* Espacio entre pokeballs */
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Contenedor individual de cada opción */
+.pokeball-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.pokeball-container:hover {
+    transform: translateY(-10px); /* Flota un poco al pasar el ratón */
+}
+
+/* --- 1. EL NOMBRE FLOTANTE (HOVER) --- */
+.nombre-flotante {
+    position: absolute;
+    top: -40px; /* Encima de la bola */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;             /* Invisible por defecto */
+    transition: opacity 0.3s, top 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Triangulito del bocadillo */
+.nombre-flotante::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+/* Al pasar el ratón por el contenedor, mostramos el nombre */
+.pokeball-container:hover .nombre-flotante {
+    opacity: 1;
+    top: -50px; /* Sube un poquito más */
+}
+
+/* --- 2. IMÁGENES --- */
+.img-bola {
+    width: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    z-index: 2; /* La bola está encima */
+    transition: transform 0.2s;
+}
+
+.img-poke {
+    width: 90px; /* Un poco más grande que la bola */
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    z-index: 1; /* El pokemon está debajo */
+    
+    /* Estado inicial: Invisible y pequeño */
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Efecto rebote */
+}
+
+/* --- 3. ANIMACIONES JS --- */
+
+/* Clase para temblar */
+.temblor {
+    animation: shakeBall 0.5s ease-in-out infinite;
+}
+
+/* Clase cuando se abre (bola desaparece, pokemon aparece) */
+.abierto .img-bola {
+    transform: scale(1.5);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.abierto .img-poke {
+    opacity: 1;
+    transform: scale(1.2); /* Crece y se ve */
+    bottom: 10px;
+}
+
+/* Animación Shake */
+@keyframes shakeBall {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* =========================================
+   ESTILO LABORATORIO (MALETÍN)
+   ========================================= */
+
+.laboratorio-oak {
+    background-color: #fff;
+    border: 4px solid #e60012;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 10px 0 #b3000e;
+    min-height: 300px; /* Altura mínima para que no salte mucho al cambiar */
+}
+
+/* Texto de instrucciones */
+.instruccion {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+/* --- ESTILOS DEL MALETÍN --- */
+#img-maletin {
+    cursor: pointer;
+    transition: transform 0.3s;
+    animation: flotar 3s ease-in-out infinite; /* El maletín flota suavemente */
+}
+
+#img-maletin:hover {
+    filter: brightness(1.1); /* Se ilumina al pasar el ratón */
+}
+
+/* Animación de flotar */
+@keyframes flotar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- CLASES DE VISIBILIDAD --- */
+
+/* Clase para esconder cosas (Display None) */
+.oculto {
+    display: none;
+    opacity: 0;
+}
+
+/* Clase para hacer aparecer las pokeballs suavemente */
+.aparecer {
+    display: block;
+    animation: fadeUp 1s forwards; /* Animación de entrada */
+}
+
+/* Animación de entrada suave hacia arriba */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- (MANTÉN EL CSS DE LAS POKEBALLS ANTERIOR AQUÍ) --- */
+/* Asegúrate de tener el CSS de .pokeball-container, .img-bola, etc. que te pasé antes */
+.mesa-iniciales {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+/* ... resto del CSS de pokeballs ... */
+
+
+/* =========================================
+   BOTÓN DE MÚSICA FLOTANTE
+   ========================================= */
+.boton-musica {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2000; /* Por encima de todo */
+    
+    background-color: #e60012; /* Rojo Nintendo */
+    color: white;
+    border: 2px solid white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s, background 0.3s;
+}
+
+.boton-musica:hover {
+    transform: scale(1.1);
+    background-color: #ff3344;
+}
+
+/* Estilo cuando está en pausa (Gris) */
+.boton-musica.pausado {
+    background-color:rgb(0, 128, 255);
+    opacity: 0.8;
+}
+
+/* =========================================
+   BOTÓN EXTRA (DENTRO DEL LABORATORIO)
+   ========================================= */
+
+.btn-extra-interno {
+    position: absolute;      /* Flota... */
+    top: 20px;               /* ...pegado arriba */
+    right: 20px;             /* ...pegado a la derecha */
+    
+    background-color: #00d4ff; /* Azul Cian */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: 0 2px 5px rgba(70, 3, 3, 0.2);
+    transition: transform 0.2s, background 0.3s;
+    z-index: 10;
+}
+
+.btn-extra-interno:hover {
+    transform: scale(1.1);
+    background-color: #0088cc;
+}
+
+/* Estilo cuando está pausado */
+.btn-extra-interno.pausado {
+    background-color: #ccc;
+    color: #ec0101;
+}
+
+/* =========================================
+   PANTALLA DE CARGA NINTENDO (GAME BOY)
+   ========================================= */
+
+/* 1. Fondo "Verde Game Boy" */
+.pantalla-carga-marca.nintendo-loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    
+    /* El color exacto de la pantalla de Game Boy original */
+    background-color: #9bbc0f; 
+    /* O si prefieres el gris de la consola: #e0e0d0 */
+    
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    transition: opacity 0.8s ease-out, visibility 0.8s;
+}
+
+/* 2. La animación de bajada */
+.logo-bajada {
+    /* El logo baja durante 2 segundos y se frena */
+    animation: bajarLogo 2s ease-out forwards;
+    
+    /* Truco para que los píxeles se vean nítidos y no borrosos */
+    image-rendering: pixelated; 
+}
+
+@keyframes bajarLogo {
+    0% { 
+        transform: translateY(-400px); /* Empieza muy arriba (fuera de pantalla) */
+        opacity: 0; 
+    }
+    40% { 
+        opacity: 1; 
+    }
+    60% { 
+        transform: translateY(0); /* Llega al centro */
+    }
+    100% { 
+        transform: translateY(0); /* Se queda quieto esperando */
+    }
+}
+
+/* 3. Clase para ocultar */
+.pantalla-carga-marca.oculto {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* BOTÓN FLOTANTE NINTENDO */
+.btn-flotante-nintendo {
+    position: fixed; bottom: 20px; left: 20px;
+    z-index: 10001; /* ¡ENCIMA DE LA CARGA! */
+    
+    background-color: #e6e6e6;    /* Gris Consola NES */
+    color: #ff0000;               /* Rojo Nintendo */
+    border: 3px solid #ff0000;
+    box-shadow: 4px 4px 0px #000; /* Sombra sólida pixelada */
+    
+    padding: 10px 20px; border-radius: 5px; /* Cuadrado retro */
+    font-family: 'Verdana', sans-serif; font-weight: bold; cursor: pointer;
+    transition: transform 0.2s;
+}
+.btn-flotante-nintendo:hover {
+    transform: scale(1.1); background-color: white;
+}

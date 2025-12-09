@@ -1,0 +1,258 @@
+/* =========================================
+   ESTILO SEGA (Sonic Blue)
+   ========================================= */
+
+   body {
+    /* Capa oscura para que no moleste el brillo del cielo */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 50, 100, 0.8)), 
+        url('Multimedia/SEGA/fondo_sega.jpg');
+        
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
+    color: white;
+    font-family: 'Verdana', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- TÍTULOS --- */
+h1, h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+h1 {
+    color: #ffcc00; /* Amarillo Anillo Sonic */
+    text-shadow: 3px 3px 0 #000;
+    font-size: 3em;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #fff;
+    border-bottom: 4px solid #ffcc00;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-top: 40px;
+}
+
+/* --- MENÚ DE NAVEGACIÓN --- */
+nav ul {
+    background-color: rgba(255, 255, 255, 0.1); /* Efecto cristal */
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    border: 2px solid #ffcc00;
+    margin-bottom: 40px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #0044cc;
+    background-color: #fff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 0 #ccc; /* Efecto botón 3D */
+}
+
+nav a:hover {
+    background-color: #ffcc00;
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 #c49c00;
+}
+
+/* --- SECCIONES DE TEXTO --- */
+section {
+    background-color: #ffffff;
+    color: #333; /* Texto oscuro para leer bien sobre blanco */
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 15px;
+    max-width: 900px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-left: 10px solid #0044cc; /* Borde lateral azul SEGA */
+}
+
+li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+strong {
+    color: #0044cc;
+}
+
+/* --- TABLA --- */
+table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    color: #333;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+}
+
+th {
+    padding: 15px;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Cabecera Principal de la Tabla */
+th[colspan="8"] {
+    background-color: #0044cc;
+    color: #ffcc00;
+    font-size: 2em;
+    border-bottom: 5px solid #ffcc00;
+}
+
+/* Cabeceras de columna */
+tr:nth-child(2) th {
+    background-color: #002266;
+}
+
+td {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Efecto al pasar el ratón por las filas */
+tr:hover td {
+    background-color: #f0f8ff;
+}
+
+/* --- IMÁGENES Y VIDEO --- */
+img, video {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 30px;
+    background-color: #002266;
+    border-top: 5px solid #ffcc00;
+}
+
+footer a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* =========================================
+   1. FLECHAS DE SCROLL (Piso de Abajo)
+   ========================================= */
+   .boton-flotante-arriba, 
+   .boton-flotante-abajo {
+       position: fixed;
+       bottom: 20px !important; /* Pegadas al suelo */
+       z-index: 2000;
+       
+       width: 45px;
+       height: 45px;
+       line-height: 45px;
+       text-align: center;
+       background-color: #ffd700; /* Dorado Sonic */
+       color: #000;
+       border-radius: 50%;
+       font-size: 20px;
+       text-decoration: none;
+       border: 2px solid white;
+       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+   }
+   
+   .boton-flotante-arriba { right: 20px; }
+   .boton-flotante-abajo  { left: 20px; }
+   
+   
+   /* =========================================
+      2. BOTÓN MÚSICA SEGA (Piso de Arriba)
+      ========================================= */
+   .btn-flotante-sega {
+       position: fixed;
+       /* LO SUBIMOS A 90px PARA QUE NO TOQUE LA FLECHA DE ABAJO */
+       bottom: 90px; 
+       left: 20px;     /* Alineado a la izquierda */
+       z-index: 2000;
+       
+       background-color: #0089cf; /* Azul SEGA Original */
+       color: white;
+       border: 2px solid white;
+       padding: 10px 20px;
+       border-radius: 50px;
+       font-weight: bold;
+       cursor: pointer;
+       font-family: sans-serif;
+       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+       transition: transform 0.2s, background 0.3s;
+   }
+   
+   .btn-flotante-sega:hover {
+       transform: scale(1.1);
+       background-color: #00509d; /* Azul más oscuro al pasar ratón */
+   }
+
+   /* =========================================
+   PANTALLA DE CARGA SEGA
+   ========================================= */
+
+/* 1. Fondo "Azul Sega" Intenso */
+.pantalla-carga-marca.sega-loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    
+    background-color: #0057e7; /* El azul oficial de Sonic/Sega */
+    
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Sega es velocidad: transición un poco más rápida */
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+/* 2. Animación de Latido (El grito "SEGA!") */
+.sega-loader img {
+    animation: latidoSega 0.4s infinite alternate;
+}
+
+@keyframes latidoSega {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); } /* Crece y decrece rápido */
+}
+
+/* 3. Clase para ocultar */
+.pantalla-carga-marca.oculto {
+    opacity: 0;
+    visibility: hidden;
+}

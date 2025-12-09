@@ -1,0 +1,256 @@
+/* =========================================
+   ESTILO ATARI (Retro Arcade 70s/80s)
+   ========================================= */
+
+body {
+    /* Aquí usamos negro casi puro con las estrellas de fondo */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+        url('Multimedia/ATARI/fondo_atari.jpg');
+    
+    /* Para el espacio, a veces queda mejor 'contain' si es un patrón pequeño, 
+       pero 'cover' es más seguro */
+    background-size: cover; 
+    background-attachment: fixed;
+    
+    color: #fff; /* Texto blanco */
+    font-family: 'Courier New', monospace; /* Fuente retro obligatoria */
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- ENCABEZADOS --- */
+h1, h2 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px; /* Letras separadas estilo retro */
+}
+
+h1 {
+    color: #E4002B; /* Rojo Atari */
+    font-size: 3em;
+    text-shadow: 2px 2px 0px #fff; /* Sombra dura blanca */
+    margin-bottom: 40px;
+}
+
+h2 {
+    color: #ffffff;
+    border-bottom: 2px dashed #E4002B; /* Línea discontinua retro */
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-top: 40px;
+}
+
+/* --- MENÚ DE NAVEGACIÓN (Estilo Botones Arcade) --- */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 2px solid #333; /* Marco alrededor del menú */
+    background-color: #111;
+}
+
+nav a {
+    text-decoration: none;
+    color: #E4002B;
+    background-color: #000;
+    padding: 10px 20px;
+    border: 2px solid #E4002B; /* Borde rojo */
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.2s steps(5); /* Transición a pasos (efecto robot) */
+}
+
+nav a:hover {
+    background-color: #E4002B;
+    color: white;
+    box-shadow: 0 0 10px #E4002B; /* Resplandor */
+}
+
+/* --- SECCIONES (Cajas de texto) --- */
+section {
+    border: 1px solid #444;
+    background-color: #0a0a0a;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    box-shadow: 5px 5px 0px #222; /* Sombra sólida (sin difuminar) */
+}
+
+ul, ol {
+    line-height: 1.6;
+    margin-left: 20px;
+}
+
+strong {
+    color: #E4002B; /* Resaltar palabras clave en rojo */
+}
+
+/* --- TABLA (Estilo Terminal) --- */
+table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    border-collapse: collapse;
+    border: 4px solid #E4002B; /* Borde grueso exterior */
+    font-size: 14px;
+    background-color: #000;
+}
+
+th {
+    background-color: #E4002B;
+    color: white;
+    padding: 15px;
+    text-transform: uppercase;
+    border: 1px solid white;
+}
+
+td {
+    padding: 15px;
+    border: 1px solid #444; /* Líneas finas grises */
+    text-align: center;
+    vertical-align: middle;
+    color: #00ff00; /* Texto verde fósforo (tipo monitor antiguo) */
+}
+
+/* --- IMÁGENES Y VIDEO --- */
+img, video {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid white; /* Marco blanco simple */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Efecto especial para la imagen de cabecera */
+.imagen-cabecera {
+    filter: grayscale(100%) contrast(1.2); /* Blanco y negro contrastado */
+    border: none;
+}
+.imagen-cabecera:hover {
+    filter: none; /* Color al pasar el ratón */
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    border-top: 2px dashed #444;
+    font-size: 12px;
+}
+
+footer a {
+    color: #E4002B;
+    text-decoration: none;
+}
+
+/* =========================================
+   1. FLECHAS DE SCROLL (Piso de Abajo)
+   ========================================= */
+   .boton-flotante-arriba, 
+   .boton-flotante-abajo {
+       position: fixed;
+       bottom: 20px !important;
+       z-index: 2000;
+       
+       width: 45px;
+       height: 45px;
+       line-height: 45px;
+       text-align: center;
+       background-color: #fff; /* Flechas blancas en Atari */
+       color: #e60012;         /* Símbolo Rojo */
+       border-radius: 50%;
+       font-size: 20px;
+       text-decoration: none;
+       border: 2px solid #e60012; /* Borde Rojo */
+       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+       transition: transform 0.2s;
+   }
+   
+   .boton-flotante-arriba:hover,
+   .boton-flotante-abajo:hover {
+       background-color: #e60012;
+       color: white;
+       transform: scale(1.1);
+   }
+   
+   .boton-flotante-arriba { right: 20px; }
+   .boton-flotante-abajo  { left: 20px; }
+   
+   
+   /* =========================================
+      2. BOTÓN MÚSICA ATARI (Piso de Arriba)
+      ========================================= */
+   .btn-flotante-atari {
+       position: fixed;
+       /* LO SUBIMOS A 90px PARA QUE NO TOQUE LA FLECHA DE ABAJO */
+       bottom: 90px; 
+       left: 20px;     /* Alineado a la izquierda */
+       z-index: 10001;
+       
+       background-color: #e60012; /* ROJO ATARI */
+       color: white;
+       border: 2px solid white;
+       padding: 10px 20px;
+       border-radius: 5px; /* Atari es más "cuadrado" o retro */
+       font-weight: bold;
+       cursor: pointer;
+       font-family: 'Courier New', monospace; /* Fuente retro */
+       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+       transition: transform 0.2s;
+   }
+   
+   .btn-flotante-atari:hover {
+       transform: scale(1.1);
+       background-color: #b3000e;
+   }
+
+   /* =========================================
+   PANTALLA DE CARGA ATARI (CON ANIMACIÓN)
+   ========================================= */
+
+/* 1. Fondo Negro Puro */
+.pantalla-carga-marca.atari-loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    
+    background-color: #000000; 
+    
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    transition: opacity 0.8s ease-out, visibility 0.8s;
+}
+
+/* 2. IMAGEN CON ANIMACIÓN DE LATIDO + BRILLO */
+.atari-loader img {
+    /* La animación dura 2 segundos y se repite infinitamente */
+    animation: latidoRetro 2s infinite ease-in-out alternate;
+}
+
+/* 3. LOS KEYFRAMES (Aquí está la magia del movimiento) */
+@keyframes latidoRetro {
+    0% { 
+        transform: scale(1);                /* Tamaño normal */
+        opacity: 0.6;                       /* Un poco apagado */
+        filter: drop-shadow(0 0 0px red);   /* Sin brillo */
+    }
+    100% { 
+        transform: scale(1.2);              /* ¡CRECE! (Zoom x1.2) */
+        opacity: 1;                         /* Totalmente visible */
+        filter: drop-shadow(0 0 30px red);  /* ¡MUCHO BRILLO ROJO! */
+    }
+}
+
+/* 4. Clase para ocultar */
+.pantalla-carga-marca.oculto {
+    opacity: 0;
+    visibility: hidden;
+}
